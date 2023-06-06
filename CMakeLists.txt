@@ -3,4 +3,4 @@ project(Bank_System)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Bank_System main.cpp)
+add_executable(Bank_System main.cpp Validation.cpp Validation.h Person.cpp Person.h)
