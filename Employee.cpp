@@ -7,7 +7,7 @@ Employee::Employee() {
     this->salary = 0.0;
 }
 
-Employee::Employee(std::string id, std::string first_name, std::string second_name, std::string password,double salary):
+Employee::Employee(string id, string first_name, string second_name, string password,double salary) :
 Person(id,first_name,second_name,password)
 {
     if (Validation::isValidSalary(salary)){

@@ -7,7 +7,8 @@ Client::Client(){
     balance = 0.0;
 }
 
-Client::Client(string id, string first_name, string second_name, string password, double balance):Person(id,first_name,second_name,password){
+Client::Client(string id, string first_name, string second_name, string password, double balance) :
+Person(id,first_name,second_name,password){
     if (Validation::isValidBalance(balance)){
         this->balance = balance;
     }else{

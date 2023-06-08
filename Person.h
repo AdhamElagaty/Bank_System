@@ -8,8 +8,6 @@ public:
     Person();
     Person(string first_name, string second_name, string password);
     Person(string id, string first_name, string second_name, string password);
-    void set_first_name(string first_name);
-    void set_second_name(string second_name);
     void set_name(string first_name, string second_name);
     void set_password(string password);
     string get_first_name();
