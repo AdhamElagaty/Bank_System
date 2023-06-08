@@ -8,12 +8,12 @@ Person::Person(string first_name, string second_name, string password) {
         this->first_name = first_name;
         this->second_name = second_name;
     } else {
-        throw invalid_argument("Invalid name");
+        throw invalid_argument("Invalid Name");
     }
     if (Validation::isValidPassword(password)) {
         this->password = password;
     } else {
-        throw invalid_argument("Invalid password");
+        throw invalid_argument("Invalid Password");
     }
 }
 
@@ -23,30 +23,30 @@ Person::Person(string id, string first_name, string second_name, string password
         this->first_name = first_name;
         this->second_name = second_name;
     } else {
-        throw invalid_argument("Invalid name");
+        throw invalid_argument("Invalid Name");
     }
     if (Validation::isValidPassword(password)) {
         this->password = password;
     } else {
-        throw invalid_argument("Invalid password");
+        throw invalid_argument("Invalid Password");
     }
 }
 
-void Person::set_first_name(string first_name) {
-    this->first_name = first_name;
-}
-
-void Person::set_second_name(string second_name) {
-    this->second_name = second_name;
-}
-
 void Person::set_name(string first_name, string second_name) {
-    this->first_name = first_name;
-    this->second_name = second_name;
+    if(Validation::isValidName(first_name+second_name)){
+        this->first_name = first_name;
+        this->second_name = second_name;
+    }else{
+        throw invalid_argument("Invalid Name");
+    }
 }
 
-void Person::set_password(std::string password) {
-    this->password = password;
+void Person::set_password(string password) {
+    if (Validation::isValidPassword(password)){
+        this->password = password;
+    }else{
+        throw invalid_argument("Invalid Password");
+    }
 }
 
 string Person::get_first_name() {

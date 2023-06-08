@@ -2,7 +2,7 @@
 using namespace std;
 
 class Person {
-private:
+protected:
     string id, first_name, second_name, password;
 public:
     Person();
