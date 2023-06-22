@@ -9,19 +9,16 @@ Client::Client(){
 
 Client::Client(string id, string first_name, string second_name, string password, double balance) :
 Person(id,first_name,second_name,password){
-    if (Validation::isValidBalance(balance)){
-        this->balance = balance;
-    }else{
-        throw invalid_argument("Invalid Balance");
-    }
+    this->set_balance(balance);
 }
 
 void Client::set_balance(double balance) {
-    if (Validation::isValidBalance(balance)){
-        this->balance = balance;
-    }else{
-        throw invalid_argument("Invalid Balance");
+    while (!Validation::isValidBalance(balance)){
+        cout << "Error! Invalid Balance :( " << endl;
+        cout << "Please Enter Balance Again : ";
+        cin >> balance;
     }
+    this->balance = balance;
 }
 
 double Client::get_balance() {
@@ -31,9 +28,6 @@ double Client::get_balance() {
 void Client::deposit(double amount) {
     if (amount > 0) {
         this->balance += amount;
-    }else
-    {
-        throw invalid_argument("Invalid Amount");
     }
 }
 
@@ -42,7 +36,7 @@ void Client::withdraw(double amount) {
         this->balance -= amount;
     }else
     {
-        throw invalid_argument("Invalid Amount to Withdraw");
+        cout << "Error! Invalid Amount to Withdraw :(" << endl;
     }
 }
 
@@ -51,7 +45,7 @@ void Client::transferTo(double amount, Client &recipient) {
         this->balance -= amount;
         recipient.deposit(amount);
     }else{
-        throw invalid_argument("Invalid Amount to Transfer");
+        cout << "Error! Invalid Amount to Transfer :(" << endl;
     }
 }
 

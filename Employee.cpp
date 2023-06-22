@@ -10,21 +10,16 @@ Employee::Employee() {
 Employee::Employee(string id, string first_name, string second_name, string password,double salary) :
 Person(id,first_name,second_name,password)
 {
-    if (Validation::isValidSalary(salary)){
-        this->salary = salary;
-    }
-    else{
-        throw invalid_argument("Invalid Salary");
-    }
+    this->set_salary(salary);
 }
 
 void Employee::set_salary(double salary) {
-    if (Validation::isValidSalary(salary)){
-        this->salary = salary;
+    while (!Validation::isValidSalary(salary)){
+        cout << "Error! Invalid Salary :( " << endl;
+        cout << "Please Enter Salary Again : ";
+        cin >> salary;
     }
-    else{
-        throw invalid_argument("Invalid Salary");
-    }
+    this->salary = salary;
 }
 
 double Employee::get_salary() {
