@@ -1,5 +1,8 @@
+#include <iostream>
 #include "Person.h"
 #include "Validation.h"
+#include "Password.h"
+using namespace std;
 
 Person::Person() {}
 
@@ -30,7 +33,7 @@ void Person::set_password(string password) {
     while (!Validation::isValidPassword(password)){
         cout << "Error! Invalid Password :( " << endl;
         cout << "Please Enter Password Again : ";
-        cin >> password;
+        password = Password::takePasswdFromUser();
     }
     this->password = password;
 }
