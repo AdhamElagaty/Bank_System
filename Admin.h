@@ -1,3 +1,5 @@
+#ifndef ADMIN_H
+#define ADMIN_H
 #include <iostream>
 #include "Employee.h"
 using namespace std;
@@ -7,4 +9,4 @@ public:
     Admin();
     Admin(string id, string first_name, string second_name, string password,double salary);
 };
-
+#endif

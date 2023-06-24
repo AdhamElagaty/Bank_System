@@ -1,5 +1,5 @@
 # ninja log v5
-1	181	7093134232401772	build.ninja	5892dcdd9d33a0f0
+1	181	7093176969504827	build.ninja	5892dcdd9d33a0f0
 2	522	7092780112637503	CMakeFiles/Bank_System.dir/main.cpp.obj	13e2337c61c7c323
 13	1044	7092673176608997	CMakeFiles/Bank_System.dir/Admin.cpp.obj	3c3b06222e886dd3
 6	527	7092780112692780	CMakeFiles/Bank_System.dir/Client.cpp.obj	bbe81b93d0034b97
