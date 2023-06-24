@@ -1,3 +1,5 @@
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
 #include <iostream>
 #include "Person.h"
 using namespace std;
@@ -12,3 +14,4 @@ public:
     double get_salary();
     void display();
 };
+#endif

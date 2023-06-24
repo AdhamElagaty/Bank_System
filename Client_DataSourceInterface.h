@@ -1,7 +1,6 @@
 #ifndef CLIENT_DATASOURCEINTERFACE_H
 #define CLIENT_DATASOURCEINTERFACE_H
 #include <vector>
-#include "Client.h"
 using namespace std;
 
 class Client;
