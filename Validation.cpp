@@ -4,10 +4,11 @@ using namespace std;
 
 bool Validation::isValidName(string name) {
     if (name.length() < 5 || name.length() > 20) {
+        cout << "h1" << endl;
         return false;
     }
     for (int i = 0; i < name.length(); ++i) {
-        if (!isalpha(name[i])) {
+        if (!isalpha(name[i]) && name[i] != ' ') {
             return false;
         }
     }

@@ -1,6 +1,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 class Person {
@@ -10,8 +11,9 @@ public:
     Person();
     Person(string first_name, string second_name, string password);
     Person(string id, string first_name, string second_name, string password);
-    void set_name(string first_name, string second_name);
+    void set_name(string name);
     void set_password(string password);
+    void set_id(string id);
     string get_first_name();
     string get_second_name();
     string get_name();

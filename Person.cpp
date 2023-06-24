@@ -1,32 +1,40 @@
-#include <iostream>
 #include "Person.h"
 #include "Validation.h"
 #include "Password.h"
-using namespace std;
 
 Person::Person() {}
 
 Person::Person(string first_name, string second_name, string password) {
-    this->set_name(first_name,second_name);
+    this->set_name(first_name+" "+second_name);
     this->set_password(password);
 }
 
 Person::Person(string id, string first_name, string second_name, string password) {
     this->id = id;
-    this->set_name(first_name,second_name);
+    this->set_name(first_name+" "+second_name);
     this->set_password(password);
 }
 
-void Person::set_name(string first_name, string second_name) {
-    while (!Validation::isValidName(first_name+second_name)){
+void Person::set_name(string name) {
+    while (!Validation::isValidName(name)){
+        string f_name, s_name;
         cout << "Error! Invalid Name :( " << endl;
         cout << "Please Enter First Name Again : ";
-        cin >> first_name;
+        cin >> f_name;
         cout << "Please Enter Second Name Again : ";
-        cin >> second_name;
+        cin >> s_name;
+        name = f_name + " " + s_name;
     }
-    this->first_name = first_name;
-    this->second_name = second_name;
+    string result[2];
+    string item;
+    stringstream Name(name);
+    int i = 0;
+    while (getline(Name, item, ' ')) {
+        result[i] = item;
+        i++;
+    }
+    this->first_name = result[0];
+    this->second_name = result[1];
 }
 
 void Person::set_password(string password) {
@@ -36,6 +44,10 @@ void Person::set_password(string password) {
         password = Password::takePasswdFromUser();
     }
     this->password = password;
+}
+
+void Person::set_id(string id) {
+    this->id = id;
 }
 
 string Person::get_first_name() {
