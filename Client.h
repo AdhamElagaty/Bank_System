@@ -1,7 +1,8 @@
+#ifndef CLIENT_H
+#define CLIENT_H
 #include <iostream>
 #include "Person.h"
 using namespace std;
-
 
 class Client : public Person{
 private:
@@ -17,3 +18,4 @@ public:
     void checkBalance();
     void display();
 };
+#endif

@@ -116,7 +116,8 @@
 				6,
 				8,
 				10,
-				12
+				12,
+				13
 			]
 		}
 	],
@@ -192,6 +193,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "Password.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Client_DataSourceInterface.h",
 			"sourceGroupIndex" : 1
 		}
 	],

@@ -1,3 +1,5 @@
+#ifndef PERSON_H
+#define PERSON_H
 #include <iostream>
 using namespace std;
 
@@ -17,3 +19,4 @@ public:
     string get_id();
     virtual void display() = 0;
 };
+#endif
