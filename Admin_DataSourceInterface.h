@@ -7,8 +7,8 @@ class Admin;
 
 class Admin_DataSourceInterface {
 public:
-    virtual void add_admin() = 0;
-    virtual vector<Admin> get_all_admin() = 0;
-    virtual void remove_all_admin() = 0;
+    virtual void add_admin(Admin a) = 0;
+    virtual vector<Admin> get_all_admins() = 0;
+    virtual void remove_all_admins() = 0;
 };
 #endif

@@ -7,8 +7,8 @@ class Employee;
 
 class Employee_DataSourceInterface {
 public:
-    virtual void add_employee() = 0;
-    virtual vector<Employee> get_all_clients() = 0;
-    virtual void remove_all_employee() = 0;
+    virtual void add_employee(Employee e) = 0;
+    virtual vector<Employee> get_all_employees() = 0;
+    virtual void remove_all_employees() = 0;
 };
 #endif
