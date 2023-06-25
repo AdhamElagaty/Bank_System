@@ -7,6 +7,11 @@ Client::Client(){
     balance = 0.0;
 }
 
+Client::Client(string first_name, string second_name, string password, double balance) :
+        Person(first_name,second_name,password){
+    this->set_balance(balance);
+}
+
 Client::Client(string id, string first_name, string second_name, string password, double balance) :
 Person(id,first_name,second_name,password){
     this->set_balance(balance);

@@ -9,6 +9,7 @@ private:
     double balance;
 public:
     Client();
+    Client(string first_name, string second_name, string password, double balance);
     Client(string id, string first_name, string second_name, string password, double balance);
     void set_balance(double balance);
     double get_balance();
