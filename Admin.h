@@ -8,5 +8,9 @@ class Admin : public Employee{
 public:
     Admin();
     Admin(string id, string first_name, string second_name, string password,double salary);
+    void add_employee(Employee& employee);
+    Employee* search_employee(int id);
+    void list_employee();
+    void edit_employee(int id, string first_name, string second_name, string password, double Salary);
 };
 #endif
