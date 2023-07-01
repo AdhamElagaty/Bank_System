@@ -1,5 +1,7 @@
+#include <ctime>
 #include "FilesHelper.h"
 #include "Parser.h"
+using namespace std;
 
 void FilesHelper::saveLast(string last_id_file, int id) {
     ofstream LId_out;
@@ -10,18 +12,30 @@ void FilesHelper::saveLast(string last_id_file, int id) {
 
 int FilesHelper::getLast(string last_id_file) {
     ifstream Lid_in;
-    int x;
+    int x = 0;
     Lid_in.open(last_id_file);
     Lid_in >> x;
     Lid_in.close();
     return x;
 }
 
+int FilesHelper::generate_id(std::string last_id_file) {
+    time_t now = time(nullptr);
+    tm * t = localtime(&now);
+    int y =  (((t ->tm_year)+1900)%100)*1000, id;
+    if (getLast(last_id_file) == 0 || (getLast(last_id_file)/1000) != (y/1000)){
+        id = ++y;
+    } else{
+        id = getLast(last_id_file) + 1;
+    }
+    saveLast(last_id_file,id);
+    return id;
+}
+
 void FilesHelper::saveClient(Client c) {
     ofstream client_out;
     client_out.open("Clients.txt", ios::app);
-    int id = getLast("Last_id_Clients.txt") + 1;
-    saveLast("Last_id_Clients.txt",id);
+    int id = generate_id("Last_id_Clients.txt");
     c.set_id(to_string(id));
     client_out << c.get_id() << "," << c.get_name() << "," << c.get_password() << "," << c.get_balance() << endl;
     client_out.close();
@@ -30,8 +44,7 @@ void FilesHelper::saveClient(Client c) {
 void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee e) {
     ofstream employee_out;
     employee_out.open(file_name);
-    int id = getLast(last_id_file) + 1;
-    saveLast(last_id_file,id);
+    int id = generate_id(last_id_file);
     e.set_id(to_string(id));
     employee_out << e.get_id() << "," << e.get_name() << "," << e.get_password() << "," << e.get_salary() << endl;
     employee_out.close();

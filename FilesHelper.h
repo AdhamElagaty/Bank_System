@@ -12,6 +12,7 @@ class FilesHelper {
 private:
     static void saveLast(string last_id_file, int id);
     static int getLast(string last_id_file);
+    static int generate_id(string last_id_file);
 public:
     static void saveClient(Client c);
     static void saveEmployee(string file_name, string last_id_file, Employee e);
