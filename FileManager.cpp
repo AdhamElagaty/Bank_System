@@ -1,4 +1,5 @@
 #include "FileManager.h"
+#include "FilesHelper.h"
 
 FileManager::FileManager() {
     client_file = "Clients.txt";
@@ -49,6 +50,14 @@ void FileManager::remove_all_employees() {
 
 void FileManager::remove_all_admins() {
     FilesHelper::clearFile(admin_file,admin_file_last_id);
+}
+
+Client *FileManager::search_client(int id) {
+    return FilesHelper::SearchClient(id);
+}
+
+Employee *FileManager::search_employee(int id) {
+    return FilesHelper::SearchEmployee(id);
 }
 
 

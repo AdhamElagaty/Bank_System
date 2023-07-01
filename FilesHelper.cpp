@@ -1,4 +1,5 @@
 #include "FilesHelper.h"
+#include "Parser.h"
 
 void FilesHelper::saveLast(string last_id_file, int id) {
     ofstream LId_out;
@@ -62,7 +63,7 @@ vector<Employee> FilesHelper::getEmployees() {
 
 vector<Admin> FilesHelper::getAdmins() {
     vector<Admin> A;
-    ifstream file("Clients.txt");
+    ifstream file("Admins.txt");
     string line;
     while (getline(file, line)) {
         Admin a = Parser::parse_to_admin(line);
@@ -78,4 +79,34 @@ void FilesHelper::clearFile(string file_name, string last_id_file) {
     file.close();
     file.open(last_id_file, ios::trunc);
     file.close();
+}
+
+Client* FilesHelper::SearchClient(int id) {
+    ifstream file("Clients.txt");
+    string line;
+    while (getline(file, line)) {
+        Client* c = new Client(Parser::parse_to_client(line));
+        if(c->get_id() == to_string(id))
+        {
+            file.close();
+            return c;
+        }
+    }
+    file.close();
+    return nullptr;
+}
+
+Employee* FilesHelper::SearchEmployee(int id) {
+    ifstream file("Employees.txt");
+    string line;
+    while (getline(file, line)) {
+        Employee* e = new Employee(Parser::parse_to_employee(line));
+        if(e->get_id() == to_string(id))
+        {
+            file.close();
+            return e;
+        }
+    }
+    file.close();
+    return nullptr;
 }

@@ -5,10 +5,6 @@
 #include "Client_DataSourceInterface.h"
 #include "Employee_DataSourceInterface.h"
 #include "Admin_DataSourceInterface.h"
-#include "Client.h"
-#include "Employee.h"
-#include "Admin.h"
-#include "FilesHelper.h"
 using namespace std;
 
 
@@ -26,5 +22,7 @@ public:
     void remove_all_clients();
     void remove_all_employees();
     void remove_all_admins();
+    Client* search_client(int id);
+    Employee* search_employee(int id);
 };
 #endif

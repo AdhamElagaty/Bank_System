@@ -1,10 +1,11 @@
+#ifndef FILESHELPER_H
+#define FILESHELPER_H
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
-#include "Parser.h"
 using namespace std;
 
 class FilesHelper {
@@ -18,4 +19,7 @@ public:
     static vector<Employee> getEmployees();
     static vector<Admin> getAdmins();
     static void clearFile(string file_name, string last_id_file);
+    static Client* SearchClient(int id);
+    static Employee* SearchEmployee(int id);
 };
+#endif

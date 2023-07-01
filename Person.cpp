@@ -38,10 +38,11 @@ void Person::set_name(string name) {
 }
 
 void Person::set_password(string password) {
-    while (!Validation::isValidPassword(password)){
+    static string PCH = password;
+    while (!Validation::isValidPassword(PCH)){
         cout << "Error! Invalid Password :( " << endl;
         cout << "Please Enter Password Again : ";
-        password = Password::takePasswdFromUser();
+        PCH = Password::takePasswdFromUser();
     }
     this->password = password;
 }

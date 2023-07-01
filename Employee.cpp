@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Employee.h"
 #include "Validation.h"
+#include <iomanip>
 using namespace std;
 
 Employee::Employee() {
@@ -30,4 +31,38 @@ void Employee::display() {
     cout << "ID: " << this->id << endl;
     cout << "Name: " << this->get_name() << endl;
     cout << "Salary: " << this->salary << endl;
+}
+
+void Employee::add_client(Client &client) {
+    f.add_client(client);
+}
+
+Client *Employee::search_client(int id) {
+    return f.search_client(id);
+}
+
+void Employee::list_client() {
+    vector<Client> c = f.get_all_clients();
+    cout << "\t\t\t******************************************************" <<endl;
+    cout << "\t\t\t*";
+    cout << "      ID               Name             Balance     ";
+    cout << "*" << endl;
+    cout << "\t\t\t******************************************************" <<endl;
+    for(Client &C : c){
+        cout << "\t\t\t*     " << left << setw(15) << C.get_id()    << left << setw(22) << C.get_name() << left << setw(10) << C.get_balance() << setw(6) << "*" << endl;
+    }
+    cout << "\t\t\t******************************************************" <<endl;
+}
+
+void Employee::edit_client(int id, string first_name, string second_name, string password, double balance) {
+    vector<Client> c = f.get_all_clients();
+    f.remove_all_clients();
+    for(Client &C : c){
+        if (C.get_id() == to_string(id)){
+            C.set_name(first_name + " " + second_name);
+            C.set_password(password);
+            C.set_balance(balance);
+        }
+        f.add_client(C);
+    }
 }
