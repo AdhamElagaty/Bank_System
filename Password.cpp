@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <conio.h>
 #include "Password.h"
 using namespace std;
@@ -24,4 +25,13 @@ string Password::takePasswdFromUser(){
         passwd.push_back(ch_ipt);
         cout << sp;
     }
+}
+
+string Password::encrypt_password(string password, string id) {
+    int key = stoi(id)%1000;
+    string pass = password;
+    for (int i = 0; i < password.length(); ++i) {
+        pass[i] = pass[i] + (key+i);
+    }
+    return pass;
 }

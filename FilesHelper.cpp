@@ -1,4 +1,6 @@
+#include <iostream>
 #include <ctime>
+#include "Password.h"
 #include "FilesHelper.h"
 #include "Parser.h"
 using namespace std;
@@ -37,7 +39,8 @@ void FilesHelper::saveClient(Client c) {
     client_out.open("Clients.txt", ios::app);
     int id = generate_id("Last_id_Clients.txt");
     c.set_id(to_string(id));
-    client_out << c.get_id() << "," << c.get_name() << "," << c.get_password() << "," << c.get_balance() << endl;
+    string password = Password::encrypt_password(c.get_password(),c.get_id());
+    client_out << c.get_id() << "," << c.get_name() << "," << password << "," << c.get_balance() << endl;
     client_out.close();
 }
 
@@ -46,7 +49,8 @@ void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee e
     employee_out.open(file_name);
     int id = generate_id(last_id_file);
     e.set_id(to_string(id));
-    employee_out << e.get_id() << "," << e.get_name() << "," << e.get_password() << "," << e.get_salary() << endl;
+    string password = Password::encrypt_password(e.get_password(),e.get_id());
+    employee_out << e.get_id() << "," << e.get_name() << "," << password << "," << e.get_salary() << endl;
     employee_out.close();
 }
 
