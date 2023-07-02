@@ -11,3 +11,24 @@ void ClientManger::print_client_menu() {
     cout << "# 7. Logout                       #" << endl;
     cout << "###################################" << endl;
 }
+
+void ClientManger::update_password(Client *client) {
+    string oldPass, newPass, confirmPass;
+    cout << "Enter old password: ";
+    cin >> oldPass;
+    if (oldPass != client->get_password()) {
+        cout << "Incorrect password :(" << endl;
+        return;
+    }
+    cout << "Enter new password: ";
+    cin >> newPass;
+    cout << "Confirm new password: ";
+    cin >> confirmPass;
+    if (newPass != confirmPass) {
+        cout << "Passwords do not match :(" << endl;
+        return;
+    }
+    client->edit_client(stoi(client->get_id()), newPass);
+    client->set_password(newPass);
+    cout << "Password updated successfully :)" << endl;
+}

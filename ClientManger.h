@@ -6,5 +6,6 @@
 class ClientManger {
 public:
     static void print_client_menu();
+    static void update_password(Client* client);
 };
 #endif

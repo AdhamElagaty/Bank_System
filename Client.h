@@ -2,11 +2,13 @@
 #define CLIENT_H
 #include <iostream>
 #include "Person.h"
+#include "FileManager.h"
 using namespace std;
 
 class Client : public Person{
 private:
     double balance;
+    FileManager f;
 public:
     Client();
     Client(string first_name, string second_name, string password, double balance);
@@ -17,6 +19,7 @@ public:
     void withdraw(double amount);
     void transferTo(double amount, Client& recipient);
     void checkBalance();
+    void edit_client(int id, string password);
     void display();
 };
 #endif

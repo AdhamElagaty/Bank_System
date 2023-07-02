@@ -58,6 +58,17 @@ void Client::checkBalance(){
     cout << "Balance: " << this->balance << endl;
 }
 
+void Client::edit_client(int id, string password) {
+    vector<Client> c = f.get_all_clients();
+    f.remove_all_clients();
+    for(Client &C : c){
+        if (C.get_id() == to_string(id)){
+            C.set_password(password);
+        }
+        f.add_client(C);
+    }
+}
+
 void Client::display(){
     cout << "ID: " << this->id << endl;
     cout << "Name: " << this->get_name() << endl;
