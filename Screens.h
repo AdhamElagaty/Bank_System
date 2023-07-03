@@ -1,8 +1,13 @@
+#include <windows.h>
+#include <conio.h>
 #ifndef SCREENS_H
 #define SCREENS_H
+using namespace std;
+
 
 class Screens {
 public:
+    static void color_style(WORD n);
     static void loading_screen();
     static void bank_name();
     static void welcome();
