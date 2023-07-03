@@ -14,6 +14,12 @@ FileManager::FileManager() {
     employee_out.close();
     ofstream admin_out(admin_file, ios::app);
     admin_out.close();
+    ofstream client_out_lastID(client_file_last_id, ios::app);
+    client_out_lastID.close();
+    ofstream employee_out_lastID(employee_file_last_id, ios::app);
+    employee_out_lastID.close();
+    ofstream admin_out_lastID(admin_file_last_id, ios::app);
+    admin_out_lastID.close();
 }
 
 void FileManager::add_client(Client c) {
