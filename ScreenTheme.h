@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 #ifndef SCREENTHEME_H
 #define SCREENTHEME_H
 using namespace std;

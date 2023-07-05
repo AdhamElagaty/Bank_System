@@ -1,6 +1,8 @@
+#include "ScreenTheme.h"
 #include "ClientManger.h"
+#include "Password.h"
 
-string ClientManger::print_client_menu() {
+int ClientManger::print_client_menu() {
     string menu = "\n###################################\n"
                   "# 1. Show My Data                 #\n"
                   "# 2. Check Balance                #\n"
@@ -10,7 +12,7 @@ string ClientManger::print_client_menu() {
                   "# 6. Update Password              #\n"
                   "# 7. Logout                       #\n"
                   "###################################\n";
-    return menu;
+    return ScreenTheme::choose_them(menu,7,75,31);
 }
 
 void ClientManger::update_password(Client *client) {
@@ -32,4 +34,21 @@ void ClientManger::update_password(Client *client) {
     client->edit_client(stoi(client->get_id()), newPass);
     client->set_password(newPass);
     cout << "Password updated successfully :)" << endl;
+}
+
+Client *ClientManger::login(string id, string password) {
+    FileManager f;
+    Client* c = new Client();
+    c = f.search_client(stoi(id));
+    if(c != nullptr){
+        string pass = Password::decrypt_password(c->get_password(),id);
+        c->set_password(pass);
+        if(pass == password){
+            return c;
+        }else{
+            return nullptr;
+        }
+    } else{
+        return nullptr;
+    }
 }
