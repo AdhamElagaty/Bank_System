@@ -10,6 +10,7 @@ public:
     static void loading_screen();
     static void bank_name();
     static void welcome();
+    static void header_screen();
     static void login_option();
 };
 #endif

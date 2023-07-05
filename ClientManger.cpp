@@ -1,15 +1,16 @@
 #include "ClientManger.h"
 
-void ClientManger::print_client_menu() {
-    cout << "###################################" << endl;
-    cout << "# 1. Show My Data                 #" << endl;
-    cout << "# 2. Check Balance                #" << endl;
-    cout << "# 3. Deposit                      #" << endl;
-    cout << "# 4. Withdraw                     #" << endl;
-    cout << "# 5. Transfer To Another Account  #" << endl;
-    cout << "# 6. Update Password              #" << endl;
-    cout << "# 7. Logout                       #" << endl;
-    cout << "###################################" << endl;
+string ClientManger::print_client_menu() {
+    string menu = "\n###################################\n"
+                  "# 1. Show My Data                 #\n"
+                  "# 2. Check Balance                #\n"
+                  "# 3. Deposit                      #\n"
+                  "# 4. Withdraw                     #\n"
+                  "# 5. Transfer To Another Account  #\n"
+                  "# 6. Update Password              #\n"
+                  "# 7. Logout                       #\n"
+                  "###################################\n";
+    return menu;
 }
 
 void ClientManger::update_password(Client *client) {
