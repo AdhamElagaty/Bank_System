@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Client.h"
 #include "Validation.h"
 using namespace std;
@@ -70,7 +71,11 @@ void Client::edit_client(int id, string password) {
 }
 
 void Client::display(){
-    cout << "ID: " << this->id << endl;
-    cout << "Name: " << this->get_name() << endl;
-    cout << "Balance: " << this->balance << endl;
+    cout << "\t\t\t\t\t\t\t\t******************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t*";
+    cout << "      ID               Name             Balance     ";
+    cout << "*" << endl;
+    cout << "\t\t\t\t\t\t\t\t******************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t*     " << left << setw(15) << this->id << left << setw(22) << this->get_name() << left << setw(10) << this->get_balance() << setw(6) << "*" << endl;
+    cout << "\t\t\t\t\t\t\t\t******************************************************" <<endl;
 }

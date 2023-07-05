@@ -17,7 +17,7 @@ void ScreenTheme::go_to_xy(short x, short y)
 }
 
 int ScreenTheme::choose_them(string menu, int num_ch, short X, short Y){
-    int* Set = new int[num_ch], counter = 2;
+    int* Set = new int[num_ch], counter = 1;
     char key;
     for (int i = 0; i < num_ch; ++i) {
         Set[i] = 7;
@@ -26,6 +26,11 @@ int ScreenTheme::choose_them(string menu, int num_ch, short X, short Y){
     {
         short x = X, y = Y;
         int nc = 0;
+        for (int j = 0; j < num_ch; ++j) {
+            if (counter == j+1){
+                Set[j] = 12;
+            }
+        }
         for (int i = 0; i < menu.length(); ++i) {
             if (menu[i] == '\n'){
                 go_to_xy(x,y);
@@ -57,11 +62,6 @@ int ScreenTheme::choose_them(string menu, int num_ch, short X, short Y){
                 counter = 1;
             } else{
                 counter++;
-            }
-        }
-        for (int j = 0; j < num_ch; ++j) {
-            if (counter == j+1){
-                Set[j] = 12;
             }
         }
         if(key == '\r')

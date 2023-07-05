@@ -1,5 +1,6 @@
 #include "ScreenTheme.h"
 #include "ClientManger.h"
+#include "Screens.h"
 #include "Password.h"
 
 int ClientManger::print_client_menu() {
@@ -51,4 +52,29 @@ Client *ClientManger::login(string id, string password) {
     } else{
         return nullptr;
     }
+}
+
+void ClientManger::display_client_info(Client client) {
+    system("cls");
+    Screens::header_screen();
+    cout << "\n\n";
+    client.display();
+    string menu = "\n#############\n"
+                  "# 1. Back   #\n"
+                  "#############\n";
+    ScreenTheme::choose_them(menu,1,20,30);
+}
+
+bool ClientManger::client_options(Client *client){
+    int choice;
+    do{
+        system("cls");
+        Screens::header_screen();
+        choice = print_client_menu();
+        switch (choice) {
+            case 1:
+                display_client_info(*client);
+                break;
+        }
+    } while (true);
 }

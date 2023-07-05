@@ -5,9 +5,12 @@
 #ifndef CLIENTMANGER_H
 #define CLIENTMANGER_H
 class ClientManger {
+private:
+    static void display_client_info(Client client);
 public:
     static int print_client_menu();
     static void update_password(Client* client);
-    static Client* login(string id, string passw0rd);
+    static Client* login(string id, string password);
+    static bool client_options(Client* client);
 };
 #endif
