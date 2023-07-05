@@ -5,9 +5,17 @@
 #include "Screens.h"
 using namespace std;
 
+void Screens::view_date_and_time() {
+    time_t now = time(nullptr);
+    string  date_and_time = ctime(&now);
+    ScreenTheme::color_style(4);
+    cout << "\t\t\t\t\t\t\t\t\t\t" << date_and_time << endl;
+}
+
 void Screens::loading_screen() {
-    cout << "\n\n\n";
+    system("cls");
     ScreenTheme::color_style(14);
+    cout << "\n\n";
     cout << "\t\t\t\t\t\t           G############################BBBBBBBB############################G           " << endl;
     cout << "\t\t\t\t\t\t         .?B?!!!!!!!!!!!!!!!!!!!!!!!!!!?J5GBBG5J?!!!!!!!!!!!!!!!!!!!!!!!!!!?B7.         " << endl;
     cout << "\t\t\t\t\t\t       .?#@.                       .!YB###GGGG###BY!.                        @#?.       " << endl;
@@ -100,7 +108,7 @@ void Screens::loading_screen() {
     ScreenTheme::color_style(13);
     bank_name();
     ScreenTheme::color_style(15);
-    cout << "\n\n\n\t\t\t\t\t\t\t\tLoading  ";
+    cout << "\n\n\t\t\t\t\t\t\t\tLoading  ";
     char x = (char)219;
     ScreenTheme::color_style(8);
     for (int i = 0; i < 45; ++i) {
@@ -176,6 +184,7 @@ void Screens::welcome() {
 }
 
 void Screens::header_screen() {
+    view_date_and_time();
     cout << "\n\n";
     cout << "                                                                                                                                 ";
     ScreenTheme::color_style(8);

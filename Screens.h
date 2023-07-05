@@ -7,6 +7,7 @@ using namespace std;
 
 class Screens {
 public:
+    static void view_date_and_time();
     static void loading_screen();
     static void bank_name();
     static void welcome();
