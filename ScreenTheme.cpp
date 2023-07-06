@@ -75,3 +75,32 @@ int ScreenTheme::choose_them(string menu, int num_ch, short X, short Y){
         }
     }
 }
+
+string ScreenTheme::take_num_input() {
+    string num = "";
+    char ch_ipt;
+    while (true) {
+        ch_ipt = getch();
+        if(isdigit(ch_ipt)){
+            num.push_back(ch_ipt);
+            cout << ch_ipt;
+        }else{
+            if (ch_ipt == 13) {
+                cout << endl;
+                return num;
+            }else if(ch_ipt == 27){
+                num = "!x!";
+                cout << endl;
+                return num;
+            }
+            else if (ch_ipt == 8 && num.length() != 0) {
+                num.pop_back();
+                cout << "\b \b";
+                continue;
+            }
+            else if (ch_ipt == 8 && num.length() == 0) {
+                continue;
+            }
+        }
+    }
+}

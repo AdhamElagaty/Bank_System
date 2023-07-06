@@ -19,7 +19,8 @@ public:
     void withdraw(double amount);
     void transferTo(double amount, Client& recipient);
     void checkBalance();
-    void edit_client(int id, string password);
+    void edit_client_password();
+    void edit_client_balance();
     void display();
 };
 #endif

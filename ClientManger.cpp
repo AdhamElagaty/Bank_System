@@ -6,14 +6,13 @@
 int ClientManger::print_client_menu() {
     string menu = "\n###################################\n"
                   "# 1. Show My Data                 #\n"
-                  "# 2. Check Balance                #\n"
-                  "# 3. Deposit                      #\n"
-                  "# 4. Withdraw                     #\n"
-                  "# 5. Transfer To Another Account  #\n"
-                  "# 6. Update Password              #\n"
-                  "# 7. Logout                       #\n"
+                  "# 2. Deposit                      #\n"
+                  "# 3. Withdraw                     #\n"
+                  "# 4. Transfer To Another Account  #\n"
+                  "# 5. Update Password              #\n"
+                  "# 6. Logout                       #\n"
                   "###################################\n";
-    return ScreenTheme::choose_them(menu,7,75,31);
+    return ScreenTheme::choose_them(menu,6,75,31);
 }
 
 void ClientManger::update_password(Client *client) {
@@ -32,8 +31,8 @@ void ClientManger::update_password(Client *client) {
         cout << "Passwords do not match :(" << endl;
         return;
     }
-    client->edit_client(stoi(client->get_id()), newPass);
     client->set_password(newPass);
+    client->edit_client_password();
     cout << "Password updated successfully :)" << endl;
 }
 
@@ -65,6 +64,39 @@ void ClientManger::display_client_info(Client client) {
     ScreenTheme::choose_them(menu,1,20,30);
 }
 
+void ClientManger::deposit(Client* client) {
+    system("cls");
+    string amount;
+    Screens::header_screen();
+    cout << "\n\n";
+    client->checkBalance();
+    cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+    ScreenTheme::color_style(12);
+    cout << "ESC";
+    ScreenTheme::color_style(7);
+    cout << "'" << endl;
+    cout << "\n\n\t\t\t\t\t\t\t\t\t   Enter Your Money to Deposit : ";
+    amount = ScreenTheme::take_num_input();
+    if(amount != "!x!"){
+        try {
+            client->deposit(stod(amount));
+            system("cls");
+            Screens::header_screen();
+            cout << "\n\n";
+            client->checkBalance();
+            ScreenTheme::color_style(2);
+            cout << "\t\t\t\t\t\t\t\t\t\tThe Amount has been Added :)";
+            ScreenTheme::color_style(7);
+            string menu = "\n#############\n"
+                          "# 1. Back   #\n"
+                          "#############\n";
+            ScreenTheme::choose_them(menu,1,20,30);
+        }catch(exception){
+            return;
+        }
+    }
+}
+
 bool ClientManger::client_options(Client *client){
     int choice;
     do{
@@ -74,6 +106,9 @@ bool ClientManger::client_options(Client *client){
         switch (choice) {
             case 1:
                 display_client_info(*client);
+                break;
+            case 2:
+                deposit(client);
                 break;
         }
     } while (true);
