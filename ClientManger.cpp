@@ -115,8 +115,9 @@ void ClientManger::withdraw(Client *client) {
             ScreenTheme::color_style(12);
             cout << "\t\t\t\t\t\t\t\t\t   Error! Invalid Amount to Withdraw :(" << endl;
             ScreenTheme::color_style(7);
+            er = false;
         }
-        cout << "\t\t\t\t\t\t\t\t\t   Enter Your Money to Deposit : ";
+        cout << "\t\t\t\t\t\t\t\t\t   Enter Your Money to Withdraw : ";
         amount = ScreenTheme::take_num_input();
         if (amount != "!x!") {
             try {
@@ -146,6 +147,88 @@ void ClientManger::withdraw(Client *client) {
     }while (r);
 }
 
+void ClientManger::transfer_to(Client *client){
+    string client2_id, amount;
+    FileManager f;
+    Client* client2 = new Client();
+    bool yr = true, yer = false, mr = true, mer = false;
+    do {
+        system("cls");
+        Screens::header_screen();
+        cout << "\n\n";
+        client->checkBalance();
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        cout << "\n\n";
+        if(yer){
+            ScreenTheme::color_style(12);
+            cout << "\t\t\t\t\t\t\t\t   Error! No Account with this ID :(" << endl;
+            ScreenTheme::color_style(7);
+            yer = false;
+        }
+        if(mer){
+            ScreenTheme::color_style(12);
+            cout << "\t\t\t\t\t\t\t\t   Error! Invalid Amount to Transfer :(" << endl;
+            ScreenTheme::color_style(7);
+            mer = false;
+        }
+        cout << "\t\t\t\t\t\t\t\t   Enter ID of Account do you want to transfer money : ";
+        client2_id = ScreenTheme::take_num_input();
+        if (client2_id != "!x!") {
+            try {
+                if (client2_id == client->get_id()){
+                    yer = true;
+                    continue;
+                }
+                client2 = f.search_client(stoi(client2_id));
+                if(client2 != nullptr){
+                    yr = false;
+                }else{
+                    yer = true;
+                    continue;
+                }
+            } catch (exception) {
+                yer = true;
+            }
+        }else{
+            break;
+        }
+        if(!yer) {
+            cout << "\t\t\t\t\t\t\t\t   Enter Your Money to transfer : ";
+            amount = ScreenTheme::take_num_input();
+            if (amount != "!x!") {
+                try {
+                    if (client->transferTo(stod(amount), *client2)) {
+                        system("cls");
+                        Screens::header_screen();
+                        cout << "\n\n";
+                        client->checkBalance();
+                        ScreenTheme::color_style(2);
+                        cout << "\t\t\t\t\t\t\t\t      The Money has been Transfer to " << client2->get_name() << " :)";
+                        ScreenTheme::color_style(7);
+                        string menu = "\n#############\n"
+                                      "# 1. Back   #\n"
+                                      "#############\n";
+                        ScreenTheme::choose_them(menu, 1, 20, 30);
+                        mr = false;
+                    } else {
+                        mer = true;
+                    }
+                } catch (exception) {
+                    mer = true;
+                }
+            } else {
+                break;
+            }
+        }
+
+    }while (yr || mr);
+    delete client2;
+}
+
 bool ClientManger::client_options(Client *client){
     int choice;
     bool r = true;
@@ -162,6 +245,9 @@ bool ClientManger::client_options(Client *client){
                 break;
             case 3:
                 withdraw(client);
+                break;
+            case 4:
+                transfer_to(client);
                 break;
             case 6:
                 r = false;

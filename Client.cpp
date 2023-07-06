@@ -41,6 +41,7 @@ void Client::deposit(double amount) {
 bool Client::withdraw(double amount) {
     if (amount > 0 && amount <= this->balance) {
         this->balance -= amount;
+        edit_client_balance();
         return true;
     }else
     {
@@ -48,12 +49,14 @@ bool Client::withdraw(double amount) {
     }
 }
 
-void Client::transferTo(double amount, Client &recipient) {
-    if (amount > 0 && amount <= this->balance) {
+bool Client::transferTo(double amount, Client &recipient) {
+    if (amount > 0 && amount <= (this->balance-1500.0)) {
         this->balance -= amount;
+        edit_client_balance();
         recipient.deposit(amount);
+        return true;
     }else{
-        cout << "Error! Invalid Amount to Transfer :(" << endl;
+        return false;
     }
 }
 

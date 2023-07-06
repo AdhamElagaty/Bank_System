@@ -1,3 +1,4 @@
+#include "Password.h"
 #include "Parser.h"
 
 vector<string> Parser::split(string line) {
@@ -15,7 +16,7 @@ Client Parser::parse_to_client(string line) {
     Client c;
     c.set_id(fields[0]);
     c.set_name(fields[1]);
-    c.set_password(fields[2]);
+    c.set_password(Password::decrypt_password(fields[2],fields[0]));
     c.set_balance(stod(fields[3]));
     return c;
 }
@@ -25,7 +26,7 @@ Employee Parser::parse_to_employee(string line) {
     Employee e;
     e.set_id(fields[0]);
     e.set_name(fields[1]);
-    e.set_password(fields[2]);
+    e.set_password(Password::decrypt_password(fields[2],fields[0]));
     e.set_salary(stod(fields[3]));
     return e;
 }
@@ -35,7 +36,7 @@ Admin Parser::parse_to_admin(string line) {
     Admin a;
     a.set_id(fields[0]);
     a.set_name(fields[1]);
-    a.set_password(fields[2]);
+    a.set_password(Password::decrypt_password(fields[2],fields[0]));
     a.set_salary(stod(fields[3]));
     return a;
 }
