@@ -8,6 +8,7 @@ class ClientManger {
 private:
     static void display_client_info(Client client);
     static void deposit(Client* client);
+    static void withdraw(Client* client);
 public:
     static int print_client_menu();
     static void update_password(Client* client);

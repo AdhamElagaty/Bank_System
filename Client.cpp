@@ -38,12 +38,13 @@ void Client::deposit(double amount) {
     }
 }
 
-void Client::withdraw(double amount) {
+bool Client::withdraw(double amount) {
     if (amount > 0 && amount <= this->balance) {
         this->balance -= amount;
+        return true;
     }else
     {
-        cout << "Error! Invalid Amount to Withdraw :(" << endl;
+        return false;
     }
 }
 

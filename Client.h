@@ -16,7 +16,7 @@ public:
     void set_balance(double balance);
     double get_balance();
     void deposit(double amount);
-    void withdraw(double amount);
+    bool withdraw(double amount);
     void transferTo(double amount, Client& recipient);
     void checkBalance();
     void edit_client_password();

@@ -97,8 +97,58 @@ void ClientManger::deposit(Client* client) {
     }
 }
 
+void ClientManger::withdraw(Client *client) {
+    string amount;
+    bool r = true, er = false;
+    do {
+        system("cls");
+        Screens::header_screen();
+        cout << "\n\n";
+        client->checkBalance();
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        cout << "\n\n";
+        if(er){
+            ScreenTheme::color_style(12);
+            cout << "\t\t\t\t\t\t\t\t\t   Error! Invalid Amount to Withdraw :(" << endl;
+            ScreenTheme::color_style(7);
+        }
+        cout << "\t\t\t\t\t\t\t\t\t   Enter Your Money to Deposit : ";
+        amount = ScreenTheme::take_num_input();
+        if (amount != "!x!") {
+            try {
+                if (client->withdraw(stod(amount))) {
+                    system("cls");
+                    Screens::header_screen();
+                    cout << "\n\n";
+                    client->checkBalance();
+                    ScreenTheme::color_style(2);
+                    cout << "\t\t\t\t\t\t\t\t\t      The Amount has been Withdraw :)";
+                    ScreenTheme::color_style(7);
+                    string menu = "\n#############\n"
+                                  "# 1. Back   #\n"
+                                  "#############\n";
+                    ScreenTheme::choose_them(menu, 1, 20, 30);
+                    r = false;
+                }else{
+                    er = true;
+                    continue;
+                }
+            } catch (exception) {
+                return;
+            }
+        }else{
+            r = false;
+        }
+    }while (r);
+}
+
 bool ClientManger::client_options(Client *client){
     int choice;
+    bool r = true;
     do{
         system("cls");
         Screens::header_screen();
@@ -110,6 +160,13 @@ bool ClientManger::client_options(Client *client){
             case 2:
                 deposit(client);
                 break;
+            case 3:
+                withdraw(client);
+                break;
+            case 6:
+                r = false;
+                break;
         }
-    } while (true);
+    } while (r);
+    delete client;
 }
