@@ -127,6 +127,12 @@ build CMakeFiles/Bank_System.dir/ScreenTheme.cpp.obj: CXX_COMPILER__Bank_System_
   OBJECT_DIR = CMakeFiles\Bank_System.dir
   OBJECT_FILE_DIR = CMakeFiles\Bank_System.dir
 
+build CMakeFiles/Bank_System.dir/EmployeeManger.cpp.obj: CXX_COMPILER__Bank_System_Debug D$:/Programing/Project/Bank$ System/Bank_System/EmployeeManger.cpp || cmake_object_order_depends_target_Bank_System
+  DEP_FILE = CMakeFiles\Bank_System.dir\EmployeeManger.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
+  OBJECT_DIR = CMakeFiles\Bank_System.dir
+  OBJECT_FILE_DIR = CMakeFiles\Bank_System.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Bank_System
@@ -135,7 +141,7 @@ build CMakeFiles/Bank_System.dir/ScreenTheme.cpp.obj: CXX_COMPILER__Bank_System_
 #############################################
 # Link the executable Bank_System.exe
 
-build Bank_System.exe: CXX_EXECUTABLE_LINKER__Bank_System_Debug CMakeFiles/Bank_System.dir/main.cpp.obj CMakeFiles/Bank_System.dir/Validation.cpp.obj CMakeFiles/Bank_System.dir/Person.cpp.obj CMakeFiles/Bank_System.dir/Client.cpp.obj CMakeFiles/Bank_System.dir/Employee.cpp.obj CMakeFiles/Bank_System.dir/Admin.cpp.obj CMakeFiles/Bank_System.dir/Password.cpp.obj CMakeFiles/Bank_System.dir/Parser.cpp.obj CMakeFiles/Bank_System.dir/FilesHelper.cpp.obj CMakeFiles/Bank_System.dir/FileManager.cpp.obj CMakeFiles/Bank_System.dir/ClientManger.cpp.obj CMakeFiles/Bank_System.dir/Screens.cpp.obj CMakeFiles/Bank_System.dir/ScreenTheme.cpp.obj
+build Bank_System.exe: CXX_EXECUTABLE_LINKER__Bank_System_Debug CMakeFiles/Bank_System.dir/main.cpp.obj CMakeFiles/Bank_System.dir/Validation.cpp.obj CMakeFiles/Bank_System.dir/Person.cpp.obj CMakeFiles/Bank_System.dir/Client.cpp.obj CMakeFiles/Bank_System.dir/Employee.cpp.obj CMakeFiles/Bank_System.dir/Admin.cpp.obj CMakeFiles/Bank_System.dir/Password.cpp.obj CMakeFiles/Bank_System.dir/Parser.cpp.obj CMakeFiles/Bank_System.dir/FilesHelper.cpp.obj CMakeFiles/Bank_System.dir/FileManager.cpp.obj CMakeFiles/Bank_System.dir/ClientManger.cpp.obj CMakeFiles/Bank_System.dir/Screens.cpp.obj CMakeFiles/Bank_System.dir/ScreenTheme.cpp.obj CMakeFiles/Bank_System.dir/EmployeeManger.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Bank_System.dir

@@ -5,7 +5,7 @@
 #ifndef CLIENTMANGER_H
 #define CLIENTMANGER_H
 class ClientManger {
-private:
+protected:
     static void display_client_info(Client client);
     static void deposit(Client* client);
     static void withdraw(Client* client);
