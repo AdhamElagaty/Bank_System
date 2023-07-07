@@ -12,6 +12,6 @@ public:
     static void bank_name();
     static void welcome();
     static void header_screen();
-    static void login_option();
+    static int login_as_menu();
 };
 #endif

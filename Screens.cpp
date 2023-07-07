@@ -371,12 +371,12 @@ void Screens::header_screen() {
 
 }
 
-void Screens::login_option() {
+int Screens::login_as_menu(){
     string menu = "\n###################\n"
                   "# 1. Client       #\n"
                   "# 2. Admin        #\n"
                   "# 3. Employee     #\n"
                   "# 4. Exit         #\n"
                   "###################\n";
-    ScreenTheme::choose_them(menu,4,75,31);
+    return ScreenTheme::choose_them(menu,4,75,31);
 }
