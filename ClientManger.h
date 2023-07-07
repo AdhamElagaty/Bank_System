@@ -14,6 +14,6 @@ private:
 public:
     static int print_client_menu();
     static Client* login(string id, string password);
-    static bool client_options(Client* client);
+    static void client_options(Client* client);
 };
 #endif

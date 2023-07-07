@@ -2,7 +2,9 @@
 #include <windows.h>
 #include <conio.h>
 #include "ScreenTheme.h"
+#include "Password.h"
 #include "Screens.h"
+#include "ClientManger.h"
 using namespace std;
 
 void Screens::view_date_and_time() {
@@ -379,4 +381,54 @@ int Screens::login_as_menu(){
                   "# 4. Exit         #\n"
                   "###################\n";
     return ScreenTheme::choose_them(menu,4,75,31);
+}
+
+void Screens::login_screen(int num) {
+    string id, password;
+    if (num == 4){
+        return;
+    }
+    do{
+        system("cls");
+        Screens::header_screen();
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Login with your Account";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\tID : ";
+        id = ScreenTheme::take_num_input();
+        if(id == "!x!")
+        {
+            return;
+        }
+        cout << "\t\t\t\t\t\t\t\t\tPassword : ";
+        password = Password::takePasswdFromUser();
+        if(password == "!x!")
+        {
+            return;
+        }
+        switch (num) {
+            case 1: {
+                Client *c;
+                c = ClientManger::login(id, password);
+                if (c != nullptr) {
+                    ClientManger::client_options(c);
+                }
+                delete c;
+                break;
+            }
+            default:
+                continue;
+        }
+    } while (true);
 }

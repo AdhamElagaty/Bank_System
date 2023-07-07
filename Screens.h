@@ -13,5 +13,6 @@ public:
     static void welcome();
     static void header_screen();
     static int login_as_menu();
+    static void login_screen(int num);
 };
 #endif

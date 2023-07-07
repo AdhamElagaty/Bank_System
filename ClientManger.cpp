@@ -67,12 +67,10 @@ void ClientManger::update_password(Client *client) {
 
 Client *ClientManger::login(string id, string password) {
     FileManager f;
-    Client* c = new Client();
+    Client* c;
     c = f.search_client(stoi(id));
     if(c != nullptr){
-        string pass = Password::decrypt_password(c->get_password(),id);
-        c->set_password(pass);
-        if(pass == password){
+        if(c->get_password() == password){
             return c;
         }else{
             return nullptr;
@@ -275,7 +273,7 @@ void ClientManger::transfer_to(Client *client){
     delete client2;
 }
 
-bool ClientManger::client_options(Client *client){
+void ClientManger::client_options(Client *client){
     int choice;
     bool r = true;
     do{
@@ -298,10 +296,9 @@ bool ClientManger::client_options(Client *client){
             case 5:
                 update_password(client);
                 break;
-            case 6:
+            default:
                 r = false;
                 break;
         }
     } while (r);
-    delete client;
 }

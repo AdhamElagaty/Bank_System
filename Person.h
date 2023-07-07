@@ -19,6 +19,7 @@ public:
     string get_name();
     string get_password();
     string get_id();
+
     virtual void display() = 0;
 };
 #endif
