@@ -20,6 +20,7 @@ public:
     void add_client(Client& client);
     Client* search_client(int id);
     void list_client();
+    void edit_employee_password();
     void edit_client(int id, string first_name, string second_name, string password, double balance);
 };
 #endif

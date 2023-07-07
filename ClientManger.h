@@ -11,8 +11,8 @@ protected:
     static void withdraw(Client* client);
     static void transfer_to(Client *client);
     static void update_password(Client* client);
-public:
     static int print_client_menu();
+public:
     static Client* login(string id, string password);
     static void client_options(Client* client);
 };

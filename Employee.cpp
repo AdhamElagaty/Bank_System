@@ -54,6 +54,17 @@ void Employee::list_client() {
     cout << "\t\t\t******************************************************" <<endl;
 }
 
+void Employee::edit_employee_password() {
+    vector<Employee> e = f.get_all_employees();
+    f.remove_all_clients();
+    for(Employee &E : e){
+        if (E.get_id() == this->id){
+            E.set_password(this->password);
+        }
+        f.add_employee(E);
+    }
+}
+
 void Employee::edit_client(int id, string first_name, string second_name, string password, double balance) {
     vector<Client> c = f.get_all_clients();
     f.remove_all_clients();
