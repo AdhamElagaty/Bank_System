@@ -15,6 +15,7 @@ void Screens::view_date_and_time() {
 }
 
 void Screens::loading_screen() {
+    Sleep(25);
     system("cls");
     ScreenTheme::color_style(14);
     cout << "\n\n";
@@ -88,9 +89,6 @@ void Screens::loading_screen() {
     cout << "\t\t\t\t\t\t   ~GB#@@#BBBBBBB@@&BB?          :JB@#P?!^.  .^!?P#@BJ:          ?BB&@@BBBBBBB#@@#BG~   " << endl;
     cout << "\t\t\t\t\t\t      ~@@!      .#@Y                ^5@@&&####&&@@5^                Y@#.      !@@~      " << endl;
     cout << "\t\t\t\t\t\t      ~@@!      .#@Y                 7@&^:~!!~:^&@7                 Y@#.      !@@~      " << endl;
-    cout << "\t\t\t\t\t\t      ~@@!      .#@Y                 ?@&:      :&@?                 Y@#.      !@@~      " << endl;
-    cout << "\t\t\t\t\t\t      ~@@!      .#@Y                 ?@&:      :&@?                 Y@#.      !@@~      " << endl;
-    cout << "\t\t\t\t\t\t      ~@@!      .#@Y                 ?@&:      :&@?                 Y@#.      !@@~      " << endl;
     cout << "\t\t\t\t\t\t      ~@@!      .#@Y                 ?@&:      :&@?                 Y@#.      !@@~      " << endl;
     cout << "\t\t\t\t\t\t      ~@@!      .#@Y                 ?@&:      :&@?                 Y@#.      !@@~      " << endl;
     cout << "\t\t\t\t\t\t      ~@@!      .#@Y                 ?@&:      :&@?                 Y@#.      !@@~      " << endl;
@@ -380,7 +378,7 @@ int Screens::login_as_menu(){
                   "# 3. Employee     #\n"
                   "# 4. Exit         #\n"
                   "###################\n";
-    return ScreenTheme::choose_them(menu,4,75,31);
+    return ScreenTheme::choose_them(menu,4,85,31);
 }
 
 void Screens::login_screen(int num) {
@@ -423,6 +421,8 @@ void Screens::login_screen(int num) {
                 c = ClientManger::login(id, password);
                 if (c != nullptr) {
                     ClientManger::client_options(c);
+                    delete c;
+                    return;
                 }
                 delete c;
                 break;
@@ -431,4 +431,15 @@ void Screens::login_screen(int num) {
                 continue;
         }
     } while (true);
+}
+
+void Screens::login_options() {
+    int choice;
+    cout << "\n\n";
+    do {
+        system("cls");
+        Screens::header_screen();
+        choice = login_as_menu();
+        login_screen(choice);
+    } while (choice != 4);
 }

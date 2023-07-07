@@ -11,6 +11,6 @@ int main() {
     system("cls");
     Screens::loading_screen();
     Screens::welcome();
-    Screens::login_screen(1);
+    Screens::login_options();
     return 0;
 }
