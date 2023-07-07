@@ -1,6 +1,6 @@
-#include "Person.h"
 #include "Validation.h"
 #include "Password.h"
+#include "Person.h"
 
 Person::Person() {}
 
@@ -38,13 +38,13 @@ void Person::set_name(string name) {
 }
 
 void Person::set_password(string password) {
-    static string PCH = password;
-    while (!Validation::isValidPassword(PCH)){
-        cout << "Error! Invalid Password :( " << endl;
-        cout << "Please Enter Password Again : ";
-        PCH = Password::takePasswdFromUser();
+    string *PCH = new string(password);
+    while (!Validation::isValidPassword(*PCH)){
+
+        *PCH = Password::Enter_new_password();
     }
-    this->password = password;
+    this->password = *PCH;
+    delete PCH;
 }
 
 void Person::set_id(string id) {

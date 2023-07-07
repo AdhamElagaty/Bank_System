@@ -16,24 +16,53 @@ int ClientManger::print_client_menu() {
 }
 
 void ClientManger::update_password(Client *client) {
-    string oldPass, newPass, confirmPass;
-    cout << "Enter old password: ";
-    cin >> oldPass;
-    if (oldPass != client->get_password()) {
-        cout << "Incorrect password :(" << endl;
+    string oldPass;
+    int attempt = 3;
+    do{
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Update Password*";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        if (attempt < 3){
+            ScreenTheme::color_style(12);
+            cout << "\t\t\t\t\t\t\t\t\t\t   Incorrect password :(" << endl;
+            ScreenTheme::color_style(7);
+            cout << "\t\t\t\t\t\t\t\t\t\t   You has ";
+            ScreenTheme::color_style(12);
+            cout << attempt;
+            ScreenTheme::color_style(7);
+            cout << " Attempt" << endl;
+        }
+        cout << "\t\t\t\t\t\t\t\t\t\t   Enter old password: ";
+        oldPass = Password::takePasswdFromUser();
+        if(oldPass == "!x!"){
+            attempt = 0;
+            break;
+        }
+        if (oldPass == client->get_password()) {
+            break;
+        }
+        attempt--;
+    } while (attempt != 0);
+    if (attempt == 0){
         return;
     }
-    cout << "Enter new password: ";
-    cin >> newPass;
-    cout << "Confirm new password: ";
-    cin >> confirmPass;
-    if (newPass != confirmPass) {
-        cout << "Passwords do not match :(" << endl;
-        return;
-    }
-    client->set_password(newPass);
+    client->set_password(Password::Enter_new_password());
     client->edit_client_password();
-    cout << "Password updated successfully :)" << endl;
+    ScreenTheme::color_style(2);
+    cout << "\t\t\t\t\t\t\t\t\t\t   Password updated successfully :)" << endl;
+    ScreenTheme::color_style(7);
 }
 
 Client *ClientManger::login(string id, string password) {
@@ -65,36 +94,53 @@ void ClientManger::display_client_info(Client client) {
 }
 
 void ClientManger::deposit(Client* client) {
-    system("cls");
     string amount;
-    Screens::header_screen();
-    cout << "\n\n";
-    client->checkBalance();
-    cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
-    ScreenTheme::color_style(12);
-    cout << "ESC";
-    ScreenTheme::color_style(7);
-    cout << "'" << endl;
-    cout << "\n\n\t\t\t\t\t\t\t\t\t   Enter Your Money to Deposit : ";
-    amount = ScreenTheme::take_num_input();
-    if(amount != "!x!"){
-        try {
-            client->deposit(stod(amount));
-            system("cls");
-            Screens::header_screen();
-            cout << "\n\n";
-            client->checkBalance();
-            ScreenTheme::color_style(2);
-            cout << "\t\t\t\t\t\t\t\t\t\tThe Amount has been Added :)";
+    bool r = true, er = false;
+    do {
+        system("cls");
+        Screens::header_screen();
+        cout << "\n\n";
+        client->checkBalance();
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        cout << "\n\n";
+        if(er){
+            ScreenTheme::color_style(12);
+            cout << "\t\t\t\t\t\t\t\t\t   Error! Invalid Amount to Deposit :(" << endl;
             ScreenTheme::color_style(7);
-            string menu = "\n#############\n"
-                          "# 1. Back   #\n"
-                          "#############\n";
-            ScreenTheme::choose_them(menu,1,20,30);
-        }catch(exception){
-            return;
+            er = false;
         }
-    }
+        cout << "\t\t\t\t\t\t\t\t\t   Enter Your Money to Deposit : ";
+        amount = ScreenTheme::take_num_input();
+        if(amount != "!x!"){
+            try {
+                if (stod(amount) <= 0){
+                    er = true;
+                    continue;
+                }
+                client->deposit(stod(amount));
+                system("cls");
+                Screens::header_screen();
+                cout << "\n\n";
+                client->checkBalance();
+                ScreenTheme::color_style(2);
+                cout << "\t\t\t\t\t\t\t\t\t\tThe Amount has been Added :)";
+                ScreenTheme::color_style(7);
+                string menu = "\n#############\n"
+                              "# 1. Back   #\n"
+                              "#############\n";
+                ScreenTheme::choose_them(menu,1,20,30);
+                r = false;
+            }catch(exception){
+                er = true;
+            }
+        } else{
+            r = false;
+        }
+    } while (r);
 }
 
 void ClientManger::withdraw(Client *client) {
@@ -139,7 +185,7 @@ void ClientManger::withdraw(Client *client) {
                     continue;
                 }
             } catch (exception) {
-                return;
+                er = true;
             }
         }else{
             r = false;
@@ -248,6 +294,9 @@ bool ClientManger::client_options(Client *client){
                 break;
             case 4:
                 transfer_to(client);
+                break;
+            case 5:
+                update_password(client);
                 break;
             case 6:
                 r = false;

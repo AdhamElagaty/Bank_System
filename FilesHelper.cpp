@@ -102,7 +102,8 @@ Client* FilesHelper::SearchClient(int id) {
     ifstream file("Clients.txt");
     string line;
     while (getline(file, line)) {
-        Client* c = new Client(Parser::parse_to_client(line));
+        Client* c = new Client();
+        *c = Parser::parse_to_client(line);
         if(c->get_id() == to_string(id))
         {
             file.close();
