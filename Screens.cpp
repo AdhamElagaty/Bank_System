@@ -370,3 +370,13 @@ void Screens::header_screen() {
     cout << "             .-=+*#####*+=:.                  " << endl;
 
 }
+
+void Screens::login_option() {
+    string menu = "\n###################\n"
+                  "# 1. Client       #\n"
+                  "# 2. Admin        #\n"
+                  "# 3. Employee     #\n"
+                  "# 4. Exit         #\n"
+                  "###################\n";
+    ScreenTheme::choose_them(menu,4,75,31);
+}
