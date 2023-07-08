@@ -1,6 +1,5 @@
 #include <iostream>
 #include <windows.h>
-#include <conio.h>
 #include "ScreenTheme.h"
 #include "Password.h"
 #include "Screens.h"
@@ -16,7 +15,7 @@ void Screens::view_date_and_time() {
 }
 
 void Screens::loading_screen() {
-    Sleep(30);
+    Sleep(40);
     system("cls");
     ScreenTheme::color_style(14);
     cout << "\n\n";
@@ -391,26 +390,26 @@ void Screens::login_screen(int num) {
         system("cls");
         Screens::header_screen();
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        cout << "\t\t\t\t\t\t\t\t\t      To Cancel Press '";
         ScreenTheme::color_style(12);
         cout << "ESC";
         ScreenTheme::color_style(7);
         cout << "'" << endl;
         ScreenTheme::color_style(11);
-        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        cout << "\n\t\t\t\t\t\t\t\t       $#$#$# ";
         ScreenTheme::color_style(7);
         cout << "Login with your Account";
         ScreenTheme::color_style(11);
         cout << " #$#$#$" << endl;
         ScreenTheme::color_style(7);
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t\t\tID : ";
+        cout << "\t\t\t\t\t\t\t\t   ID : ";
         id = ScreenTheme::take_num_input();
         if(id == "!x!")
         {
             return;
         }
-        cout << "\t\t\t\t\t\t\t\t\tPassword : ";
+        cout << "\t\t\t\t\t\t\t\t   Password : ";
         password = Password::takePasswdFromUser();
         if(password == "!x!")
         {

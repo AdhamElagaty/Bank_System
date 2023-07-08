@@ -92,6 +92,55 @@ void EmployeeManger::display_employee_info(Employee employee) {
     ScreenTheme::choose_them(menu,1,20,30);
 }
 
+void EmployeeManger::Add_new_client(Employee* employee) {
+    Client c;
+    string FName, SName, Balance;
+    system("cls");
+    Screens::header_screen();
+    ScreenTheme::color_style(11);
+    cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+    ScreenTheme::color_style(7);
+    cout << "Add New client";
+    ScreenTheme::color_style(11);
+    cout << " #$#$#$" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t  Enter First Name : ";
+    FName = ScreenTheme::take_alphabet_input();
+    if (FName == "!x!"){
+        return;
+    }
+    cout << "\t\t\t\t\t\t\t\t\t  Enter Second Name : ";
+    SName = ScreenTheme::take_alphabet_input();
+    if (SName == "!x!"){
+        return;
+    }
+    if(!c.set_name(FName + " " + SName)){
+        return;
+    }
+    system("cls");
+    Screens::header_screen();
+    ScreenTheme::color_style(11);
+    cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+    ScreenTheme::color_style(7);
+    cout << "Add New client";
+    ScreenTheme::color_style(11);
+    cout << " #$#$#$" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t  to Open Account do you need deposit more than 1500 : ";
+    Balance = ScreenTheme::take_num_input();
+    if (Balance == "!x!"){
+        return;
+    }
+    if(!c.set_balance(stod(Balance))){
+        return;
+    }
+    employee->add_client(c);
+    system("cls");
+    display_client_info(c);
+}
+
 void EmployeeManger::employee_options(Employee* employee) {
     int choice;
     bool r = true;
@@ -104,7 +153,7 @@ void EmployeeManger::employee_options(Employee* employee) {
                 display_employee_info(*employee);
                 break;
             case 2:
-//                deposit(client);
+                Add_new_client(employee);
                 break;
             case 3:
 //                withdraw(client);

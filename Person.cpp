@@ -1,6 +1,9 @@
+#include "ScreenTheme.h"
 #include "Validation.h"
 #include "Password.h"
+#include "Screens.h"
 #include "Person.h"
+using namespace std;
 
 Person::Person() {}
 
@@ -15,14 +18,32 @@ Person::Person(string id, string first_name, string second_name, string password
     this->set_password(password);
 }
 
-void Person::set_name(string name) {
+bool Person::set_name(string name) {
     while (!Validation::isValidName(name)){
         string f_name, s_name;
-        cout << "Error! Invalid Name :( " << endl;
-        cout << "Please Enter First Name Again : ";
-        cin >> f_name;
-        cout << "Please Enter Second Name Again : ";
-        cin >> s_name;
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Edite Invalid Name";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        ScreenTheme::color_style(12);
+        cout << "\t\t\t\t\t\t\t\t\t  Error! Invalid Name :( " << endl;
+        ScreenTheme::color_style(7);
+        cout << "\t\t\t\t\t\t\t\t\t  Please Enter First Name Again : ";
+        f_name = ScreenTheme::take_alphabet_input();
+        if (f_name == "!x!"){
+            return false;
+        }
+        cout << "\t\t\t\t\t\t\t\t\t  Please Enter Second Name Again : ";
+        s_name = ScreenTheme::take_alphabet_input();
+        if (s_name == "!x!"){
+            return false;
+        }
         name = f_name + " " + s_name;
     }
     string result[2];
@@ -35,6 +56,7 @@ void Person::set_name(string name) {
     }
     this->first_name = result[0];
     this->second_name = result[1];
+    return true;
 }
 
 void Person::set_password(string password) {

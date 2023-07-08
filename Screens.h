@@ -1,5 +1,3 @@
-#include <windows.h>
-#include <conio.h>
 #ifndef SCREENS_H
 #define SCREENS_H
 using namespace std;

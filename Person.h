@@ -11,7 +11,7 @@ public:
     Person();
     Person(string first_name, string second_name, string password);
     Person(string id, string first_name, string second_name, string password);
-    void set_name(string name);
+    bool set_name(string name);
     void set_password(string password);
     void set_id(string id);
     string get_first_name();

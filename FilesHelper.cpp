@@ -34,11 +34,14 @@ int FilesHelper::generate_id(std::string last_id_file) {
     return id;
 }
 
-void FilesHelper::saveClient(Client c) {
+void FilesHelper::saveClient(Client &c) {
     ofstream client_out;
     client_out.open("Clients.txt", ios::app);
     int id = generate_id("Last_id_Clients.txt");
     c.set_id(to_string(id));
+    if(c.get_password() == ""){
+        c.set_password(c.get_id()+"00000000");
+    }
     string password = Password::encrypt_password(c.get_password(),c.get_id());
     client_out << c.get_id() << "," << c.get_name() << "," << password << "," << c.get_balance() << endl;
     client_out.close();

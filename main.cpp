@@ -1,10 +1,7 @@
 #include <iostream>
 #include "Screens.h"
 #include "ClientManger.h"
-#include "FilesHelper.h"
 #include "Password.h"
-#include "ScreenTheme.h"
-#include "Employee.h"
 using namespace std;
 
 int main() {

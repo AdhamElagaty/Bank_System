@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iomanip>
+#include "ScreenTheme.h"
+#include "Screens.h"
 #include "Client.h"
 #include "Validation.h"
 using namespace std;
@@ -18,13 +20,32 @@ Person(id,first_name,second_name,password){
     this->set_balance(balance);
 }
 
-void Client::set_balance(double balance) {
+bool Client::set_balance(double balance) {
     while (!Validation::isValidBalance(balance)){
-        cout << "Error! Invalid Balance :( " << endl;
-        cout << "Please Enter Balance Again : ";
-        cin >> balance;
+        string bal;
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Edite Invalid Balance";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        ScreenTheme::color_style(12);
+        cout << "\t\t\t\t\t\t\t\t\t  Error! Invalid Balance :( " << endl;
+        cout << "\t\t\t\t\t\t\t\t\t  to Open Account do you need deposit more than 1500." << endl;
+        ScreenTheme::color_style(7);
+        cout << "\t\t\t\t\t\t\t\t\t  Please Enter Balance Again : ";
+        bal = ScreenTheme::take_num_input();
+        if (bal == "!x!"){
+            return false;
+        }
+        balance = stod(bal);
     }
     this->balance = balance;
+    return true;
 }
 
 double Client::get_balance() {

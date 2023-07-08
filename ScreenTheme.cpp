@@ -104,3 +104,32 @@ string ScreenTheme::take_num_input() {
         }
     }
 }
+
+string ScreenTheme::take_alphabet_input() {
+    string alphabet = "";
+    char ch_ipt;
+    while (true) {
+        ch_ipt = getch();
+        if(isalpha(ch_ipt) && !isspace(ch_ipt)){
+            alphabet.push_back(ch_ipt);
+            cout << ch_ipt;
+        }else{
+            if (ch_ipt == 13) {
+                cout << endl;
+                return alphabet;
+            }else if(ch_ipt == 27){
+                alphabet = "!x!";
+                cout << endl;
+                return alphabet;
+            }
+            else if (ch_ipt == 8 && alphabet.length() != 0) {
+                alphabet.pop_back();
+                cout << "\b \b";
+                continue;
+            }
+            else if (ch_ipt == 8 && alphabet.length() == 0) {
+                continue;
+            }
+        }
+    }
+}

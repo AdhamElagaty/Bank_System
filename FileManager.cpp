@@ -22,7 +22,7 @@ FileManager::FileManager() {
     admin_out_lastID.close();
 }
 
-void FileManager::add_client(Client c) {
+void FileManager::add_client(Client &c) {
     FilesHelper::saveClient(c);
 }
 

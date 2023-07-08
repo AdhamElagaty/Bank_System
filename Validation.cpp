@@ -3,7 +3,7 @@
 using namespace std;
 
 bool Validation::isValidName(string name) {
-    if (name.length() < 5 || name.length() > 20) {
+    if (name.length() < 8 || name.length() > 20) {
         return false;
     }
     for (int i = 0; i < name.length(); ++i) {
