@@ -9,11 +9,10 @@ int EmployeeManger::print_employee_menu() {
                   "# 2. Add New Client               #\n"
                   "# 3. List All Client              #\n"
                   "# 4. Search for Client            #\n"
-                  "# 5. Edite Client Data            #\n"
-                  "# 6. Update Password              #\n"
-                  "# 7. Logout                       #\n"
+                  "# 5. Update Password              #\n"
+                  "# 6. Logout                       #\n"
                   "###################################\n";
-    return ScreenTheme::choose_them(menu,7,75,31);
+    return ScreenTheme::choose_them(menu,6,75,31);
 }
 
 void EmployeeManger::update_password(Employee* employee) {
@@ -105,6 +104,13 @@ void EmployeeManger::add_new_client(Employee* employee) {
     cout << " #$#$#$" << endl;
     ScreenTheme::color_style(7);
     cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+    ScreenTheme::color_style(12);
+    cout << "ESC";
+    ScreenTheme::color_style(7);
+    cout << "'" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
     cout << "\t\t\t\t\t\t\t\t\t  Enter First Name : ";
     FName = ScreenTheme::take_alphabet_input();
     if (FName == "!x!"){
@@ -166,11 +172,83 @@ void EmployeeManger::list_all_client(Employee *employee) {
             case 1:
                 add_new_client(employee);
                 break;
+            case 2:
+                search_for_client(employee);
+                break;
             default:
                 r = false;
                 break;
         }
     } while (r);
+}
+
+void EmployeeManger::search_for_client(Employee *employee) {
+    string id;
+    Client* c;
+    bool r = false;
+    do {
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Search for client";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        cout << "\n\n";
+        if (r){
+            ScreenTheme::color_style(12);
+            cout << "\t\t\t\t\t\t\t\t\t   Error! Invalid ID;" << endl;
+            cout << "\t\t\t\t\t\t\t\t\t   ---> No Client with this ID :(" << endl;
+            ScreenTheme::color_style(7);
+        }
+        cout << "\t\t\t\t\t\t\t\t\t   Enter ID to Search : ";
+        id = ScreenTheme::take_num_input();
+        if(id == "!x!"){
+            return;
+        }
+        c = employee->search_client(stoi(id));
+        if (c != nullptr){
+            int choice;
+            do {
+                system("cls");
+                Screens::header_screen();
+                cout << "\n\n";
+                c->display();
+                string menu = "\n#####################################\n"
+                              "# 1. Deposit                        #\n"
+                              "# 2. Withdraw                       #\n"
+                              "# 3. Transfer To Another Account    #\n"
+                              "# 3. Edite Client Information       #\n"
+                              "# 4. Back                           #\n"
+                              "#####################################\n";
+                choice = ScreenTheme::choose_them(menu,4,75,37);
+                switch (choice) {
+                    case 1:
+                        deposit(c);
+                        break;
+                    case 2:
+                        withdraw(c);
+                        break;
+                    case 3:
+                        transfer_to(c);
+                        break;
+                    default:
+                        return;
+                }
+            } while (true);
+        }else{
+            r = true;
+            continue;
+        }
+    } while (true);
 }
 
 void EmployeeManger::employee_options(Employee* employee) {
@@ -191,9 +269,9 @@ void EmployeeManger::employee_options(Employee* employee) {
                 list_all_client(employee);
                 break;
             case 4:
-//                transfer_to(client);
+                search_for_client(employee);
                 break;
-            case 6:
+            case 5:
                 update_password(employee);
                 break;
             default:

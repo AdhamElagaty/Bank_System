@@ -10,6 +10,7 @@ protected:
     static void display_employee_info(Employee employee);
     static void add_new_client(Employee* employee);
     static void list_all_client(Employee* employee);
+    static void search_for_client(Employee* employee);
 public:
     static Employee* login(string id, string password);
     static void employee_options(Employee* employee);
