@@ -8,6 +8,7 @@ protected:
     static int print_employee_menu();
     static void update_password(Employee* employee);
 public:
-    Employee *login(string id, string password);
+    static Employee* login(string id, string password);
+    static void employee_options(Employee* employee);
 };
 #endif

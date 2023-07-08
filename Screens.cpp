@@ -5,6 +5,7 @@
 #include "Password.h"
 #include "Screens.h"
 #include "ClientManger.h"
+#include "EmployeeManger.h"
 using namespace std;
 
 void Screens::view_date_and_time() {
@@ -15,7 +16,7 @@ void Screens::view_date_and_time() {
 }
 
 void Screens::loading_screen() {
-    Sleep(25);
+    Sleep(30);
     system("cls");
     ScreenTheme::color_style(14);
     cout << "\n\n";
@@ -425,6 +426,18 @@ void Screens::login_screen(int num) {
                     return;
                 }
                 delete c;
+                break;
+            }
+            case 3:
+            {
+                Employee *e;
+                e = EmployeeManger::login(id, password);
+                if (e != nullptr) {
+                    EmployeeManger::employee_options(e);
+                    delete e;
+                    return;
+                }
+                delete e;
                 break;
             }
             default:

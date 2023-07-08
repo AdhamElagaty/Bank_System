@@ -56,7 +56,7 @@ void Employee::list_client() {
 
 void Employee::edit_employee_password() {
     vector<Employee> e = f.get_all_employees();
-    f.remove_all_clients();
+    f.remove_all_employees();
     for(Employee &E : e){
         if (E.get_id() == this->id){
             E.set_password(this->password);

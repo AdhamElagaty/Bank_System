@@ -13,7 +13,7 @@ int EmployeeManger::print_employee_menu() {
                   "# 6. Update Password              #\n"
                   "# 7. Logout                       #\n"
                   "###################################\n";
-    return ScreenTheme::choose_them(menu,6,75,31);
+    return ScreenTheme::choose_them(menu,7,75,31);
 }
 
 void EmployeeManger::update_password(Employee* employee) {
@@ -79,4 +79,34 @@ Employee *EmployeeManger::login(string id, string password) {
     } else{
         return nullptr;
     }
+}
+
+void EmployeeManger::employee_options(Employee* employee) {
+    int choice;
+    bool r = true;
+    do{
+        system("cls");
+        Screens::header_screen();
+        choice = print_employee_menu();
+        switch (choice) {
+            case 1:
+//                display_client_info(*client);
+                break;
+            case 2:
+//                deposit(client);
+                break;
+            case 3:
+//                withdraw(client);
+                break;
+            case 4:
+//                transfer_to(client);
+                break;
+            case 6:
+                update_password(employee);
+                break;
+            default:
+                r = false;
+                break;
+        }
+    } while (r);
 }
