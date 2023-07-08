@@ -47,15 +47,15 @@ Client *Employee::search_client(int id) {
 
 void Employee::list_client() {
     vector<Client> c = f.get_all_clients();
-    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
-    cout << "\t\t\t\t\t\t\t\t*";
+    cout << "\t\t\t\t\t\t\t\t\t\t\t********************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t\t\t\t*";
     cout << "      ID                  Name                      Balance       ";
     cout << "*" << endl;
-    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t\t\t\t********************************************************************" <<endl;
     for(Client &C : c){
-        cout << "\t\t\t\t\t\t\t\t*     " << left << setw(18) << C.get_id() << left << setw(29) << C.get_name() << left << setw(14) << C.get_balance() << "*" << endl;
+        cout << "\t\t\t\t\t\t\t\t\t\t\t*     " << left << setw(18) << C.get_id() << left << setw(29) << C.get_name() << left << setw(14) << C.get_balance() << "*" << endl;
     }
-    cout << "\t\t\t******************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t\t\t\t********************************************************************" <<endl;
 }
 
 void Employee::edit_employee_password() {

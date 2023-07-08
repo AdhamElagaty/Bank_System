@@ -92,7 +92,7 @@ void EmployeeManger::display_employee_info(Employee employee) {
     ScreenTheme::choose_them(menu,1,20,30);
 }
 
-void EmployeeManger::Add_new_client(Employee* employee) {
+void EmployeeManger::add_new_client(Employee* employee) {
     Client c;
     string FName, SName, Balance;
     system("cls");
@@ -141,6 +141,38 @@ void EmployeeManger::Add_new_client(Employee* employee) {
     display_client_info(c);
 }
 
+void EmployeeManger::list_all_client(Employee *employee) {
+    int choice;
+    bool r = true;
+    do {
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "All client";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        employee->list_client();
+        string menu = "\n################################\n"
+                      "# 1. Add New Client            #\n"
+                      "# 2. Search for Client         #\n"
+                      "# 3. Back                      #\n"
+                      "################################\n";
+        choice = ScreenTheme::choose_them(menu,3,40,35);
+        switch (choice) {
+            case 1:
+                add_new_client(employee);
+                break;
+            default:
+                r = false;
+                break;
+        }
+    } while (r);
+}
+
 void EmployeeManger::employee_options(Employee* employee) {
     int choice;
     bool r = true;
@@ -153,10 +185,10 @@ void EmployeeManger::employee_options(Employee* employee) {
                 display_employee_info(*employee);
                 break;
             case 2:
-                Add_new_client(employee);
+                add_new_client(employee);
                 break;
             case 3:
-//                withdraw(client);
+                list_all_client(employee);
                 break;
             case 4:
 //                transfer_to(client);
