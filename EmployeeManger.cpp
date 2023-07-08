@@ -65,3 +65,18 @@ void EmployeeManger::update_password(Employee* employee) {
     cout << "\t\t\t\t\t\t\t\t\t\t   Password updated successfully :)" << endl;
     ScreenTheme::color_style(7);
 }
+
+Employee *EmployeeManger::login(string id, string password) {
+    FileManager f;
+    Employee* e;
+    e = f.search_employee(stoi(id));
+    if(e != nullptr){
+        if(e->get_password() == password){
+            return e;
+        }else{
+            return nullptr;
+        }
+    } else{
+        return nullptr;
+    }
+}
