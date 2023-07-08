@@ -28,9 +28,13 @@ double Employee::get_salary() {
 }
 
 void Employee::display() {
-    cout << "ID: " << this->id << endl;
-    cout << "Name: " << this->get_name() << endl;
-    cout << "Salary: " << this->salary << endl;
+    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t*";
+    cout << "      ID                  Name                      Salary        ";
+    cout << "*" << endl;
+    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t*     " << left << setw(18) << this->get_id() << left << setw(29) << this->get_name() << left << setw(14) << this->get_salary() << "*" << endl;
+    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
 }
 
 void Employee::add_client(Client &client) {

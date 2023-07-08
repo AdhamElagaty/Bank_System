@@ -39,3 +39,7 @@
 685	850	7104791701032365	Bank_System.exe	3e67d8049c0d3e0c
 3	1544	7105196995071700	CMakeFiles/Bank_System.dir/Screens.cpp.obj	bd9282f5753f8528
 1544	1732	7105196996921376	Bank_System.exe	3e67d8049c0d3e0c
+4	909	7105209915059696	CMakeFiles/Bank_System.dir/Employee.cpp.obj	fab4689e14287084
+17	1791	7105209923868542	CMakeFiles/Bank_System.dir/EmployeeManger.cpp.obj	4c618356032b69c7
+12	1830	7105209924267134	CMakeFiles/Bank_System.dir/Screens.cpp.obj	bd9282f5753f8528
+1830	2028	7105209926203611	Bank_System.exe	3e67d8049c0d3e0c

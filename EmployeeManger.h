@@ -7,6 +7,7 @@ class EmployeeManger : public ClientManger{
 protected:
     static int print_employee_menu();
     static void update_password(Employee* employee);
+    static void display_employee_info(Employee employee);
 public:
     static Employee* login(string id, string password);
     static void employee_options(Employee* employee);

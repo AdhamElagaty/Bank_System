@@ -81,6 +81,17 @@ Employee *EmployeeManger::login(string id, string password) {
     }
 }
 
+void EmployeeManger::display_employee_info(Employee employee) {
+    system("cls");
+    Screens::header_screen();
+    cout << "\n\n";
+    employee.display();
+    string menu = "\n#############\n"
+                  "# 1. Back   #\n"
+                  "#############\n";
+    ScreenTheme::choose_them(menu,1,20,30);
+}
+
 void EmployeeManger::employee_options(Employee* employee) {
     int choice;
     bool r = true;
@@ -90,7 +101,7 @@ void EmployeeManger::employee_options(Employee* employee) {
         choice = print_employee_menu();
         switch (choice) {
             case 1:
-//                display_client_info(*client);
+                display_employee_info(*employee);
                 break;
             case 2:
 //                deposit(client);
