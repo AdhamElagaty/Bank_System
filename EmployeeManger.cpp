@@ -83,8 +83,8 @@ Employee *EmployeeManger::login(string id, string password) {
 void EmployeeManger::display_employee_info(Employee employee) {
     system("cls");
     Screens::header_screen();
-    cout << "\n\n";
-    employee.display();
+    cout << "\n\n\n\n\n";
+    employee.display_with_national_id();
     string menu = "\n#############\n"
                   "# 1. Back   #\n"
                   "#############\n";
@@ -93,7 +93,7 @@ void EmployeeManger::display_employee_info(Employee employee) {
 
 void EmployeeManger::add_new_client(Employee* employee) {
     Client c;
-    string FName, SName, Balance;
+    string FName, SName, Balance, phone_number, national_id;
     system("cls");
     Screens::header_screen();
     ScreenTheme::color_style(11);
@@ -112,12 +112,12 @@ void EmployeeManger::add_new_client(Employee* employee) {
     ScreenTheme::color_style(7);
     cout << "\n\n";
     cout << "\t\t\t\t\t\t\t\t\t  Enter First Name : ";
-    FName = ScreenTheme::take_alphabet_input();
+    FName = ScreenTheme::take_alphabet_input(12);
     if (FName == "!x!"){
         return;
     }
     cout << "\t\t\t\t\t\t\t\t\t  Enter Second Name : ";
-    SName = ScreenTheme::take_alphabet_input();
+    SName = ScreenTheme::take_alphabet_input(12);
     if (SName == "!x!"){
         return;
     }
@@ -134,8 +134,44 @@ void EmployeeManger::add_new_client(Employee* employee) {
     cout << " #$#$#$" << endl;
     ScreenTheme::color_style(7);
     cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t  Enter Phone Number : ";
+    phone_number = ScreenTheme::take_num_input(11);
+    if (phone_number == "!x!"){
+        return;
+    }
+    if(!c.set_phone_number(phone_number)){
+        return;
+    }
+    system("cls");
+    Screens::header_screen();
+    ScreenTheme::color_style(11);
+    cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+    ScreenTheme::color_style(7);
+    cout << "Add New client";
+    ScreenTheme::color_style(11);
+    cout << " #$#$#$" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t  Enter National ID : ";
+    national_id = ScreenTheme::take_num_input(14);
+    if (national_id == "!x!"){
+        return;
+    }
+    if(!c.set_national_id(national_id+"x")){
+        return;
+    }
+    system("cls");
+    Screens::header_screen();
+    ScreenTheme::color_style(11);
+    cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+    ScreenTheme::color_style(7);
+    cout << "Add New client";
+    ScreenTheme::color_style(11);
+    cout << " #$#$#$" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
     cout << "\t\t\t\t\t\t\t\t\t  to Open Account do you need deposit more than 1500 : ";
-    Balance = ScreenTheme::take_num_input();
+    Balance = ScreenTheme::take_num_input(10);
     if (Balance == "!x!"){
         return;
     }
@@ -167,7 +203,7 @@ void EmployeeManger::list_all_client(Employee *employee) {
                       "# 2. Search for Client         #\n"
                       "# 3. Back                      #\n"
                       "################################\n";
-        choice = ScreenTheme::choose_them(menu,3,40,35);
+        choice = ScreenTheme::choose_them(menu,3,27,35);
         switch (choice) {
             case 1:
                 add_new_client(employee);
@@ -210,7 +246,7 @@ void EmployeeManger::search_for_client(Employee *employee) {
             ScreenTheme::color_style(7);
         }
         cout << "\t\t\t\t\t\t\t\t\t   Enter ID to Search : ";
-        id = ScreenTheme::take_num_input();
+        id = ScreenTheme::take_num_input(5);
         if(id == "!x!"){
             return;
         }

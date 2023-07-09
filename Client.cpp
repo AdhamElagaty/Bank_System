@@ -10,13 +10,13 @@ Client::Client(){
     balance = 0.0;
 }
 
-Client::Client(string first_name, string second_name, string password, double balance) :
-        Person(first_name,second_name,password){
+Client::Client(string first_name, string second_name, string password, string phone_number, string national_id, double balance) :
+        Person(first_name,second_name,password,phone_number,national_id){
     this->set_balance(balance);
 }
 
-Client::Client(string id, string first_name, string second_name, string password, double balance) :
-Person(id,first_name,second_name,password){
+Client::Client(string id, string first_name, string second_name, string password,string phone_number, string national_id, double balance) :
+Person(id,first_name,second_name,password,phone_number,national_id){
     this->set_balance(balance);
 }
 
@@ -38,7 +38,7 @@ bool Client::set_balance(double balance) {
         cout << "\t\t\t\t\t\t\t\t\t  to Open Account do you need deposit more than 1500." << endl;
         ScreenTheme::color_style(7);
         cout << "\t\t\t\t\t\t\t\t\t  Please Enter Balance Again : ";
-        bal = ScreenTheme::take_num_input();
+        bal = ScreenTheme::take_num_input(10);
         if (bal == "!x!"){
             return false;
         }
@@ -112,11 +112,22 @@ void Client::edit_client_balance() {
 }
 
 void Client::display(){
-    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
-    cout << "\t\t\t\t\t\t\t\t*";
-    cout << "      ID                  Name                      Balance       ";
+    cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t*";
+    cout << "      ID                  Name                Phone Number                  Balance      ";
     cout << "*" << endl;
-    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
-    cout << "\t\t\t\t\t\t\t\t*     " << left << setw(18) << this->get_id() << left << setw(29) << this->get_name() << left << setw(14) << this->get_balance() << "*" << endl;
-    cout << "\t\t\t\t\t\t\t\t********************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t*     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(28) << this->get_phone_number() << left << setw(15) << this->get_balance() << "*" << endl;
+    cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
 }
+
+void Client::display_with_national_id() {
+    cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
+    cout << "\t\t\t\t\t     *";
+    cout << "      ID                  Name                Phone Number          National ID             Balance      ";
+    cout << "*" << endl;
+    cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
+    cout << "\t\t\t\t\t     *     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(21) << this->get_phone_number() << left << setw(24) << this->get_national_id() << left << setw(14) << this->get_balance() << "*" << endl;
+    cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
+}
+

@@ -87,8 +87,8 @@ Client *ClientManger::login(string id, string password) {
 void ClientManger::display_client_info(Client client) {
     system("cls");
     Screens::header_screen();
-    cout << "\n\n";
-    client.display();
+    cout << "\n\n\n\n\n";
+    client.display_with_national_id();
     string menu = "\n#############\n"
                   "# 1. Back   #\n"
                   "#############\n";
@@ -116,7 +116,7 @@ void ClientManger::deposit(Client* client) {
             er = false;
         }
         cout << "\t\t\t\t\t\t\t\t\t   Enter Your Money to Deposit : ";
-        amount = ScreenTheme::take_num_input();
+        amount = ScreenTheme::take_num_input(9);
         if(amount != "!x!"){
             try {
                 if (stod(amount) <= 0){
@@ -166,7 +166,7 @@ void ClientManger::withdraw(Client *client) {
             er = false;
         }
         cout << "\t\t\t\t\t\t\t\t\t   Enter Your Money to Withdraw : ";
-        amount = ScreenTheme::take_num_input();
+        amount = ScreenTheme::take_num_input(9);
         if (amount != "!x!") {
             try {
                 if (client->withdraw(stod(amount))) {
@@ -224,7 +224,7 @@ void ClientManger::transfer_to(Client *client){
             mer = false;
         }
         cout << "\t\t\t\t\t\t\t\t   Enter ID of Account do you want to transfer money : ";
-        client2_id = ScreenTheme::take_num_input();
+        client2_id = ScreenTheme::take_num_input(5);
         if (client2_id != "!x!") {
             try {
                 if (client2_id == client->get_id()){
@@ -246,7 +246,7 @@ void ClientManger::transfer_to(Client *client){
         }
         if(!yer) {
             cout << "\t\t\t\t\t\t\t\t   Enter Your Money to transfer : ";
-            amount = ScreenTheme::take_num_input();
+            amount = ScreenTheme::take_num_input(9);
             if (amount != "!x!") {
                 try {
                     if (client->transferTo(stod(amount), *client2)) {

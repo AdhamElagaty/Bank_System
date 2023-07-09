@@ -13,7 +13,7 @@ protected:
     FileManager f;
 public:
     Employee();
-    Employee(string id, string first_name, string second_name, string password, double salary);
+    Employee(string id, string first_name, string second_name, string password,string phone_number, string national_id, double salary);
     void set_salary(double salary);
     double get_salary();
     void display();
@@ -21,6 +21,7 @@ public:
     Client* search_client(int id);
     void list_client();
     void edit_employee_password();
-    void edit_client(int id, string first_name, string second_name, string password, double balance);
+    void edit_client(int id, string first_name, string second_name, string password, string phone_number, double balance);
+    void display_with_national_id();
 };
 #endif

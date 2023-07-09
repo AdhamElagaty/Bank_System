@@ -5,8 +5,8 @@ using namespace std;
 
 Admin::Admin() {}
 
-Admin::Admin(string id, string first_name, string second_name, string password, double salary) :
-Employee(id,first_name,second_name,password,salary){}
+Admin::Admin(string id, string first_name, string second_name, string password,string phone_number, string national_id, double salary) :
+Employee(id,first_name,second_name,password,phone_number,national_id,salary){}
 
 void Admin::add_employee(Employee &employee) {
     f.add_employee(employee);

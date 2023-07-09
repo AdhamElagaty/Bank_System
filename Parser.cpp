@@ -17,7 +17,9 @@ Client Parser::parse_to_client(string line) {
     c.set_id(fields[0]);
     c.set_name(fields[1]);
     c.set_password(Password::decrypt_password(fields[2],fields[0]));
-    c.set_balance(stod(fields[3]));
+    c.set_phone_number(fields[3]);
+    c.set_national_id(fields[4]);
+    c.set_balance(stod(fields[5]));
     return c;
 }
 
@@ -27,7 +29,9 @@ Employee Parser::parse_to_employee(string line) {
     e.set_id(fields[0]);
     e.set_name(fields[1]);
     e.set_password(Password::decrypt_password(fields[2],fields[0]));
-    e.set_salary(stod(fields[3]));
+    e.set_phone_number(fields[3]);
+    e.set_national_id(fields[4]);
+    e.set_salary(stod(fields[5]));
     return e;
 }
 
@@ -37,6 +41,8 @@ Admin Parser::parse_to_admin(string line) {
     a.set_id(fields[0]);
     a.set_name(fields[1]);
     a.set_password(Password::decrypt_password(fields[2],fields[0]));
-    a.set_salary(stod(fields[3]));
+    a.set_phone_number(fields[3]);
+    a.set_national_id(fields[4]);
+    a.set_salary(stod(fields[5]));
     return a;
 }

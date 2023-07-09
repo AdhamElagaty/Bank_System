@@ -7,5 +7,7 @@ public:
     static bool isValidPassword(string password);
     static bool isValidBalance(double balance);
     static bool isValidSalary(double salary);
+    static bool isValidPhone(string phone_number);
+    static bool isValidNationalId(string national_id);
 };
 

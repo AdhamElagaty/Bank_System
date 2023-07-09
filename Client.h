@@ -11,8 +11,8 @@ private:
     FileManager f;
 public:
     Client();
-    Client(string first_name, string second_name, string password, double balance);
-    Client(string id, string first_name, string second_name, string password, double balance);
+    Client(string first_name, string second_name, string password,string phone_number, string national_id, double balance);
+    Client(string id, string first_name, string second_name, string password,string phone_number, string national_id, double balance);
     bool set_balance(double balance);
     double get_balance();
     void deposit(double amount);
@@ -22,5 +22,6 @@ public:
     void edit_client_password();
     void edit_client_balance();
     void display();
+    void display_with_national_id();
 };
 #endif

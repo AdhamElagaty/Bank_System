@@ -34,6 +34,13 @@ int FilesHelper::generate_id(std::string last_id_file) {
     return id;
 }
 
+void FilesHelper::save_national_id(string national_id){
+    ofstream LNationalID_out;
+    LNationalID_out.open("Nationals_ID.txt", ios::app);
+    LNationalID_out << national_id << endl;
+    LNationalID_out.close();
+}
+
 void FilesHelper::saveClient(Client &c) {
     ofstream client_out;
     client_out.open("Clients.txt", ios::app);
@@ -42,8 +49,9 @@ void FilesHelper::saveClient(Client &c) {
     if(c.get_password() == ""){
         c.set_password(c.get_id()+"00000000");
     }
+    save_national_id(c.get_national_id());
     string password = Password::encrypt_password(c.get_password(),c.get_id());
-    client_out << c.get_id() << "," << c.get_name() << "," << password << "," << c.get_balance() << endl;
+    client_out << c.get_id() << "," << c.get_name() << "," << password << "," << c.get_phone_number() << "," << c.get_national_id() << "," << c.get_balance() << endl;
     client_out.close();
 }
 
@@ -52,8 +60,12 @@ void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee e
     employee_out.open(file_name);
     int id = generate_id(last_id_file);
     e.set_id(to_string(id));
+    if(e.get_password() == ""){
+        e.set_password(e.get_id()+"00000000");
+    }
+    save_national_id(e.get_national_id());
     string password = Password::encrypt_password(e.get_password(),e.get_id());
-    employee_out << e.get_id() << "," << e.get_name() << "," << password << "," << e.get_salary() << endl;
+    employee_out << e.get_id() << "," << e.get_name() << "," << password << "," << e.get_phone_number() << "," << e.get_national_id() << "," << e.get_salary() << endl;
     employee_out.close();
 }
 
@@ -130,4 +142,15 @@ Employee* FilesHelper::SearchEmployee(int id) {
     }
     file.close();
     return nullptr;
+}
+
+bool FilesHelper::IsFound_national_id(string national_id) {
+    ifstream file("Nationals_ID.txt");
+    string line;
+    while (getline(file,line)){
+        if (national_id == line){
+            return true;
+        }
+    }
+    return false;
 }

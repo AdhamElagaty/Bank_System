@@ -404,7 +404,7 @@ void Screens::login_screen(int num) {
         ScreenTheme::color_style(7);
         cout << "\n\n";
         cout << "\t\t\t\t\t\t\t\t   ID : ";
-        id = ScreenTheme::take_num_input();
+        id = ScreenTheme::take_num_input(5);
         if(id == "!x!")
         {
             return;

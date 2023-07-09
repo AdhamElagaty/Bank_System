@@ -76,12 +76,12 @@ int ScreenTheme::choose_them(string menu, int num_ch, short X, short Y){
     }
 }
 
-string ScreenTheme::take_num_input() {
+string ScreenTheme::take_num_input(int size) {
     string num = "";
     char ch_ipt;
     while (true) {
         ch_ipt = getch();
-        if(isdigit(ch_ipt)){
+        if(isdigit(ch_ipt) && num.length() <= (size-1)){
             num.push_back(ch_ipt);
             cout << ch_ipt;
         }else{
@@ -105,12 +105,12 @@ string ScreenTheme::take_num_input() {
     }
 }
 
-string ScreenTheme::take_alphabet_input() {
+string ScreenTheme::take_alphabet_input(int size) {
     string alphabet = "";
     char ch_ipt;
     while (true) {
         ch_ipt = getch();
-        if(isalpha(ch_ipt) && !isspace(ch_ipt)){
+        if(isalpha(ch_ipt) && !isspace(ch_ipt) && alphabet.length() <= (size-1)){
             alphabet.push_back(ch_ipt);
             cout << ch_ipt;
         }else{
