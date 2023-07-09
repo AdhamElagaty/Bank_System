@@ -11,6 +11,7 @@ protected:
     static void add_new_client(Employee* employee);
     static void list_all_client(Employee* employee);
     static void search_for_client(Employee* employee);
+    static bool check_national_id(Client client);
 public:
     static Employee* login(string id, string password);
     static void employee_options(Employee* employee);

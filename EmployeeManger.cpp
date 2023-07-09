@@ -15,6 +15,11 @@ int EmployeeManger::print_employee_menu() {
     return ScreenTheme::choose_them(menu,6,75,31);
 }
 
+bool EmployeeManger::check_national_id(Client client){
+    string national_id = ScreenTheme::take_num_input(14);
+    return (client.get_national_id() == national_id);
+}
+
 void EmployeeManger::update_password(Employee* employee) {
     string oldPass;
     int attempt = 3;
@@ -262,20 +267,59 @@ void EmployeeManger::search_for_client(Employee *employee) {
                               "# 1. Deposit                        #\n"
                               "# 2. Withdraw                       #\n"
                               "# 3. Transfer To Another Account    #\n"
-                              "# 3. Edite Client Information       #\n"
-                              "# 4. Back                           #\n"
+                              "# 4. Edite Client Information       #\n"
+                              "# 5. Back                           #\n"
                               "#####################################\n";
-                choice = ScreenTheme::choose_them(menu,4,75,37);
+                choice = ScreenTheme::choose_them(menu,5,75,37);
                 switch (choice) {
-                    case 1:
-                        deposit(c);
+                    case 1: {
+                        system("cls");
+                        Screens::header_screen();
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+                        ScreenTheme::color_style(12);
+                        cout << "ESC";
+                        ScreenTheme::color_style(7);
+                        cout << "'" << endl;
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Deposit : ";
+                        if(check_national_id(*c)){
+                            deposit(c);
+                        }
                         break;
-                    case 2:
-                        withdraw(c);
+                    }
+                    case 2: {
+                        system("cls");
+                        Screens::header_screen();
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+                        ScreenTheme::color_style(12);
+                        cout << "ESC";
+                        ScreenTheme::color_style(7);
+                        cout << "'" << endl;
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Withdraw : ";
+                        if (check_national_id(*c)) {
+                            withdraw(c);
+                        }
                         break;
-                    case 3:
-                        transfer_to(c);
+                    }
+                    case 3:{
+                        system("cls");
+                        Screens::header_screen();
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+                        ScreenTheme::color_style(12);
+                        cout << "ESC";
+                        ScreenTheme::color_style(7);
+                        cout << "'" << endl;
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Transfer to : ";
+                        if(check_national_id(*c)){
+                            transfer_to(c);
+                        }
                         break;
+                    }
                     default:
                         return;
                 }
