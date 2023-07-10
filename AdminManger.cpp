@@ -182,9 +182,82 @@ void AdminManger::list_all_admin(Admin *admin) {
                 add_new_employee(admin);
                 break;
             case 2:
+                search_for_employee(admin);
                 break;
             default:
                 return;
+        }
+    } while (true);
+}
+
+void AdminManger::search_for_employee(Admin *admin) {
+    string id;
+    Employee* e;
+    bool r = false;
+    do {
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Search for Employee";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        cout << "\n\n";
+        if (r){
+            ScreenTheme::color_style(12);
+            cout << "\t\t\t\t\t\t\t\t\t   Error! Invalid ID;" << endl;
+            cout << "\t\t\t\t\t\t\t\t\t   ---> No Client with this ID :(" << endl;
+            ScreenTheme::color_style(7);
+        }
+        cout << "\t\t\t\t\t\t\t\t\t   Enter ID to Search : ";
+        id = ScreenTheme::take_num_input(5);
+        if(id == "!x!"){
+            return;
+        }
+        e = admin->search_employee(stoi(id));
+        if (e != nullptr){
+            int choice;
+            do {
+                system("cls");
+                Screens::header_screen();
+                ScreenTheme::color_style(11);
+                cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+                ScreenTheme::color_style(7);
+                cout << "Employee Information";
+                ScreenTheme::color_style(11);
+                cout << " #$#$#$" << endl;
+                ScreenTheme::color_style(7);
+                cout << "\n\n";
+                e->display();
+                int r;
+                string menu = "\n#####################################\n"
+                              "# 1. Edit Salary                    #\n"
+                              "# 2. Edit Employee Information      #\n"
+                              "# 3. Back                           #\n"
+                              "#####################################\n";
+                choice = ScreenTheme::choose_them(menu,3,75,40);
+                switch (choice) {
+                    case 1: {
+                        break;
+                    }
+                    case 2: {
+                        break;
+                    }
+                    default:
+                        return;
+                }
+            } while (true);
+        }else{
+            r = true;
+            continue;
         }
     } while (true);
 }
@@ -216,6 +289,7 @@ void AdminManger::admin_options(Admin *admin) {
                 list_all_admin(admin);
                 break;
             case 7:
+                search_for_employee(admin);
                 break;
             case 8:
                 update_password(admin);

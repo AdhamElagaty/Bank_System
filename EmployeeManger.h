@@ -10,7 +10,7 @@ protected:
     static void add_new_client(Employee* employee);
     static void list_all_client(Employee* employee);
     static void search_for_client(Employee* employee);
-    static int check_national_id(Client client);
+    static int check_national_id(Person *person);
     static void edite_client_info(Employee* employee, Client* client);
     static void edite_name_of_client(Employee* employee, Client* client);
     static void edite_phone_number_of_client(Employee* employee, Client* client);

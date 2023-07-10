@@ -10,6 +10,7 @@ private:
     static void display_admin_info(Admin admin);
     static void add_new_employee(Admin* admin);
     static void list_all_admin(Admin *admin);
+    static void search_for_employee(Admin *admin);
 public:
     static Admin* login(string id, string password);
     static void admin_options(Admin* admin);

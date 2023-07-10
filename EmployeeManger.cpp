@@ -15,12 +15,12 @@ int EmployeeManger::print_employee_menu() {
     return ScreenTheme::choose_them(menu,6,75,31);
 }
 
-int EmployeeManger::check_national_id(Client client){
+int EmployeeManger::check_national_id(Person *person){
     string national_id = ScreenTheme::take_num_input(14);
     if(national_id == "!x!"){
         return 3;
     }
-    if((client.get_national_id() == national_id)){
+    if((person->get_national_id() == national_id)){
         return 1;
     }
     return 0;
@@ -270,7 +270,7 @@ void EmployeeManger::search_for_client(Employee *employee) {
                         cout << "'" << endl;
                         cout << "\n\n";
                         cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Deposit : ";
-                        r = check_national_id(*c);
+                        r = check_national_id(c);
                         if(r == 1){
                             deposit(c);
                         }else if(r == 0){
@@ -297,7 +297,7 @@ void EmployeeManger::search_for_client(Employee *employee) {
                         cout << "'" << endl;
                         cout << "\n\n";
                         cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Withdraw : ";
-                        r = check_national_id(*c);
+                        r = check_national_id(c);
                         if(r == 1){
                             withdraw(c);
                         }else if(r == 0){
@@ -324,7 +324,7 @@ void EmployeeManger::search_for_client(Employee *employee) {
                         cout << "'" << endl;
                         cout << "\n\n";
                         cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Transfer to : ";
-                        r = check_national_id(*c);
+                        r = check_national_id(c);
                         if(r == 1){
                             transfer_to(c);
                         }else if(r == 0){
@@ -352,7 +352,7 @@ void EmployeeManger::search_for_client(Employee *employee) {
                         cout << "'" << endl;
                         cout << "\n\n";
                         cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Transfer to : ";
-                        r = check_national_id(*c);
+                        r = check_national_id(c);
                         if(r == 1){
                             edite_client_info(employee,c);
                         }else if(r == 0){
@@ -454,7 +454,7 @@ void EmployeeManger::reset_password_of_client(Employee *employee, Client *client
     cout << "'" << endl;
     cout << "\n\n";
     cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Transfer to : ";
-    r = check_national_id(*client);
+    r = check_national_id(client);
     if(r == 1){
         employee->edit_client(stoi(client->get_id()),client->get_first_name(),client->get_second_name(),client->get_id()+"00000000",client->get_phone_number(),client->get_balance());
         ScreenTheme::color_style(2);
