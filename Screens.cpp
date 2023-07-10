@@ -5,6 +5,7 @@
 #include "Screens.h"
 #include "ClientManger.h"
 #include "EmployeeManger.h"
+#include "AdminManger.h"
 using namespace std;
 
 void Screens::view_date_and_time() {
@@ -425,6 +426,17 @@ void Screens::login_screen(int num) {
                     return;
                 }
                 delete c;
+                break;
+            }
+            case 2:{
+                Admin *a;
+                a = AdminManger::login(id, password);
+                if (a != nullptr) {
+                    AdminManger::admin_options(a);
+                    delete a;
+                    return;
+                }
+                delete a;
                 break;
             }
             case 3:

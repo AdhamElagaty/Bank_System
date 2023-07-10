@@ -1,5 +1,6 @@
 #include "ScreenTheme.h"
 #include "FilesHelper.h"
+#include "Screens.h"
 #include "AdminManger.h"
 
 int AdminManger::print_admin_menu() {
@@ -29,6 +30,51 @@ Admin *AdminManger::login(string id, string password) {
     } else{
         return nullptr;
     }
+}
+
+void AdminManger::display_admin_info(Admin admin) {
+    system("cls");
+    Screens::header_screen();
+    cout << "\n\n\n\n\n";
+    admin.display_with_national_id();
+    string menu = "\n#############\n"
+                  "# 1. Back   #\n"
+                  "#############\n";
+    ScreenTheme::choose_them(menu,1,20,30);
+}
+
+void AdminManger::admin_options(Admin *admin) {
+    int choice;
+    bool r = true;
+    do{
+        system("cls");
+        Screens::header_screen();
+        choice = print_admin_menu();
+        switch (choice) {
+            case 1:
+                display_admin_info(*admin);
+                break;
+            case 2:
+                add_new_client(admin);
+                break;
+            case 3:
+                list_all_client(admin);
+                break;
+            case 4:
+                search_for_client(admin);
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                update_password(admin);
+                break;
+            default:
+                r = false;
+                break;
+        }
+    } while (r);
 }
 
 
