@@ -1,4 +1,5 @@
 #include "ScreenTheme.h"
+#include "FilesHelper.h"
 #include "AdminManger.h"
 
 int AdminManger::print_admin_menu() {
@@ -14,3 +15,20 @@ int AdminManger::print_admin_menu() {
                   "###################################\n";
     return ScreenTheme::choose_them(menu,8,75,31);
 }
+
+Admin *AdminManger::login(string id, string password) {
+    FileManager f;
+    Admin* a;
+    a = FilesHelper::search_admin(stoi(id));
+    if(a != nullptr){
+        if(a->get_password() == password){
+            return a;
+        }else{
+            return nullptr;
+        }
+    } else{
+        return nullptr;
+    }
+}
+
+

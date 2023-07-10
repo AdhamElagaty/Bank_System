@@ -23,6 +23,7 @@ public:
     static void clearFile(string file_name, string last_id_file);
     static Client* SearchClient(int id);
     static Employee* SearchEmployee(int id);
+    static Admin* search_admin(int id);
     static bool IsFound_national_id(string national_id);
 };
 #endif

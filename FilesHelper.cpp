@@ -144,6 +144,21 @@ Employee* FilesHelper::SearchEmployee(int id) {
     return nullptr;
 }
 
+Admin* FilesHelper::search_admin(int id){
+    ifstream file("Admins.txt");
+    string line;
+    while (getline(file, line)) {
+        Admin* a = new Admin(Parser::parse_to_admin(line));
+        if(a->get_id() == to_string(id))
+        {
+            file.close();
+            return a;
+        }
+    }
+    file.close();
+    return nullptr;
+}
+
 bool FilesHelper::IsFound_national_id(string national_id) {
     ifstream file("Nationals_ID.txt");
     string line;
