@@ -4,6 +4,7 @@
 
 
 class AdminManger : public  EmployeeManger{
-
+private:
+    static int print_admin_menu();
 };
 #endif
