@@ -87,7 +87,7 @@ void Employee::list_client() {
 }
 
 
-void Employee::edit_client(int id, string first_name, string second_name, string password,string phone_number, double balance) {
+void Employee::edit_client(int id, string first_name, string second_name, string password,string phone_number) {
     vector<Client> c = f.get_all_clients();
     f.remove_all_clients();
     for(Client &C : c){
@@ -95,7 +95,6 @@ void Employee::edit_client(int id, string first_name, string second_name, string
             C.set_name(first_name + " " + second_name);
             C.set_password(password);
             C.set_phone_number(phone_number);
-            C.set_balance(balance);
         }
         f.add_client(C);
     }
@@ -104,7 +103,7 @@ void Employee::edit_client(int id, string first_name, string second_name, string
 void Employee::display_with_national_id() {
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *";
-    cout << "      ID                  Name                Phone Number          National ID             Salary       ";
+    cout << "      ID                  Name                Phone Number          National ID           Salary         ";
     cout << "*" << endl;
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(21) << this->get_phone_number() << left << setw(24) << this->get_national_id() << left << setw(14) << this->get_salary() << "*" << endl;

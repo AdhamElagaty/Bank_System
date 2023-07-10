@@ -351,10 +351,10 @@ void EmployeeManger::search_for_client(Employee *employee) {
                         ScreenTheme::color_style(7);
                         cout << "'" << endl;
                         cout << "\n\n";
-                        cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Transfer to : ";
+                        cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Edit Information : ";
                         r = check_national_id(c);
                         if(r == 1){
-                            edite_client_info(employee,c);
+                            edit_client_info(employee,c);
                         }else if(r == 0){
                             ScreenTheme::color_style(12);
                             cout << "\t\t\t\t\t\t\t\t\t   Invalid National ID :( " << endl;
@@ -379,7 +379,7 @@ void EmployeeManger::search_for_client(Employee *employee) {
     } while (true);
 }
 
-void  EmployeeManger::edite_name_of_client(Employee *employee, Client *client) {
+void  EmployeeManger::edit_name_of_client(Employee *employee, Client *client) {
     string FName, SName;
     system("cls");
     Screens::header_screen();
@@ -410,10 +410,10 @@ void  EmployeeManger::edite_name_of_client(Employee *employee, Client *client) {
     if(!client->set_name(FName + " " + SName)){
         return;
     }
-    employee->edit_client(stoi(client->get_id()),client->get_first_name(),client->get_second_name(),client->get_password(),client->get_phone_number(),client->get_balance());
+    employee->edit_client(stoi(client->get_id()),client->get_first_name(),client->get_second_name(),client->get_password(),client->get_phone_number());
 }
 
-void EmployeeManger::edite_phone_number_of_client(Employee *employee, Client *client) {
+void EmployeeManger::edit_phone_number_of_client(Employee *employee, Client *client) {
     string phone_number;
     system("cls");
     Screens::header_screen();
@@ -439,7 +439,7 @@ void EmployeeManger::edite_phone_number_of_client(Employee *employee, Client *cl
     if(!client->set_phone_number(phone_number)){
         return;
     }
-    employee->edit_client(stoi(client->get_id()),client->get_first_name(),client->get_second_name(),client->get_password(),client->get_phone_number(),client->get_balance());
+    employee->edit_client(stoi(client->get_id()),client->get_first_name(),client->get_second_name(),client->get_password(),client->get_phone_number());
 }
 
 void EmployeeManger::reset_password_of_client(Employee *employee, Client *client) {
@@ -453,10 +453,10 @@ void EmployeeManger::reset_password_of_client(Employee *employee, Client *client
     ScreenTheme::color_style(7);
     cout << "'" << endl;
     cout << "\n\n";
-    cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Transfer to : ";
+    cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Reset Password : ";
     r = check_national_id(client);
     if(r == 1){
-        employee->edit_client(stoi(client->get_id()),client->get_first_name(),client->get_second_name(),client->get_id()+"00000000",client->get_phone_number(),client->get_balance());
+        employee->edit_client(stoi(client->get_id()),client->get_first_name(),client->get_second_name(),client->get_id()+"00000000",client->get_phone_number());
         ScreenTheme::color_style(2);
         cout << "\t\t\t\t\t\t\t\t\t   Password Reset Successfully :) " << endl;
         ScreenTheme::color_style(7);
@@ -474,7 +474,7 @@ void EmployeeManger::reset_password_of_client(Employee *employee, Client *client
     ScreenTheme::choose_them(menu,1,20,30);
 }
 
-void EmployeeManger::edite_client_info(Employee* employee, Client* client){
+void EmployeeManger::edit_client_info(Employee* employee, Client* client){
     int choice;
     do{
         system("cls");
@@ -498,10 +498,10 @@ void EmployeeManger::edite_client_info(Employee* employee, Client* client){
         choice = ScreenTheme::choose_them(menu,4,75,40);
         switch (choice) {
             case 1:
-                edite_name_of_client(employee,client);
+                edit_name_of_client(employee,client);
                 break;
             case 2:
-                edite_phone_number_of_client(employee,client);
+                edit_phone_number_of_client(employee,client);
                 break;
             case 3:
                 reset_password_of_client(employee,client);

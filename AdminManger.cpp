@@ -157,7 +157,7 @@ void AdminManger::add_new_employee(Admin *admin) {
     display_employee_info(e);
 }
 
-void AdminManger::list_all_admin(Admin *admin) {
+void AdminManger::list_all_employee(Admin *admin) {
     int choice;
     do {
         system("cls");
@@ -250,9 +250,34 @@ void AdminManger::search_for_employee(Admin *admin) {
                         break;
                     }
                     case 2: {
+                        system("cls");
+                        Screens::header_screen();
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+                        ScreenTheme::color_style(12);
+                        cout << "ESC";
+                        ScreenTheme::color_style(7);
+                        cout << "'" << endl;
+                        cout << "\n\n";
+                        cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Edit Information : ";
+                        r = check_national_id(e);
+                        if(r == 1){
+                            edit_employee_info(admin,e);
+                        }else if(r == 0){
+                            ScreenTheme::color_style(12);
+                            cout << "\t\t\t\t\t\t\t\t\t   Invalid National ID :( " << endl;
+                            ScreenTheme::color_style(7);
+                            string menu2 = "\n#############\n"
+                                           "# 1. Back   #\n"
+                                           "#############\n";
+                            ScreenTheme::choose_them(menu2,1,20,30);
+                        } else{
+                            continue;
+                        }
                         break;
                     }
                     default:
+                        delete e;
                         return;
                 }
             } while (true);
@@ -292,6 +317,140 @@ void AdminManger::edit_salary(Admin *admin, Employee *employee) {
     admin->edit_employee(stoi(employee->get_id()),employee->get_first_name(),employee->get_second_name(),employee->get_password(),employee->get_phone_number(),employee->get_salary());
 }
 
+void AdminManger::edit_name_of_employee(Admin *admin, Employee *employee) {
+    string FName, SName;
+    system("cls");
+    Screens::header_screen();
+    ScreenTheme::color_style(11);
+    cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+    ScreenTheme::color_style(7);
+    cout << "Edit Employee Name";
+    ScreenTheme::color_style(11);
+    cout << " #$#$#$" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+    ScreenTheme::color_style(12);
+    cout << "ESC";
+    ScreenTheme::color_style(7);
+    cout << "'" << endl;
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t  Enter First Name : ";
+    FName = ScreenTheme::take_alphabet_input(12);
+    if (FName == "!x!"){
+        return;
+    }
+    cout << "\t\t\t\t\t\t\t\t\t  Enter Second Name : ";
+    SName = ScreenTheme::take_alphabet_input(12);
+    if (SName == "!x!"){
+        return;
+    }
+    if(!employee->set_name(FName + " " + SName)){
+        return;
+    }
+    admin->edit_employee(stoi(employee->get_id()),employee->get_first_name(),employee->get_second_name(),employee->get_password(),employee->get_phone_number(),employee->get_salary());
+}
+
+void AdminManger::edit_phone_number_of_employee(Admin *admin, Employee *employee) {
+    string phone_number;
+    system("cls");
+    Screens::header_screen();
+    ScreenTheme::color_style(11);
+    cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+    ScreenTheme::color_style(7);
+    cout << "Edit Employee Phone Number";
+    ScreenTheme::color_style(11);
+    cout << " #$#$#$" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+    ScreenTheme::color_style(12);
+    cout << "ESC";
+    ScreenTheme::color_style(7);
+    cout << "'" << endl;
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t  Enter Phone Number : ";
+    phone_number = ScreenTheme::take_num_input(11);
+    if (phone_number == "!x!"){
+        return;
+    }
+    if(!employee->set_phone_number(phone_number)){
+        return;
+    }
+    admin->edit_employee(stoi(employee->get_id()),employee->get_first_name(),employee->get_second_name(),employee->get_password(),employee->get_phone_number(),employee->get_salary());
+}
+
+void AdminManger::reset_password_of_employee(Admin *admin, Employee *employee) {
+    int r;
+    system("cls");
+    Screens::header_screen();
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+    ScreenTheme::color_style(12);
+    cout << "ESC";
+    ScreenTheme::color_style(7);
+    cout << "'" << endl;
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t   Enter National ID to Reset Password : ";
+    r = check_national_id(employee);
+    if(r == 1){
+        admin->edit_employee(stoi(employee->get_id()),employee->get_first_name(),employee->get_second_name(),employee->get_id()+"00000000",employee->get_phone_number(),employee->get_salary());
+        ScreenTheme::color_style(2);
+        cout << "\t\t\t\t\t\t\t\t\t   Password Reset Successfully :) " << endl;
+        ScreenTheme::color_style(7);
+        cout << "\t\t\t\t\t\t\t\t\t   Now Employee ' " << employee->get_first_name() << " ' Can Create New Password." << endl;
+    }else if (r == 0){
+        ScreenTheme::color_style(12);
+        cout << "\t\t\t\t\t\t\t\t\t   Invalid National ID :( " << endl;
+        ScreenTheme::color_style(7);
+    }else{
+        return;
+    }
+    string menu = "\n#############\n"
+                  "# 1. Back   #\n"
+                  "#############\n";
+    ScreenTheme::choose_them(menu,1,20,30);
+}
+
+void AdminManger::edit_employee_info(Admin *admin, Employee *employee) {
+    int choice;
+    do{
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t   $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Edite client Information";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        employee->display();
+        cout << "\n\n";
+        string menu = "\n##################################\n"
+                      "# 1. Edite Name                  #\n"
+                      "# 2. Edite Phone Number          #\n"
+                      "# 3. Reset Password              #\n"
+                      "# 4. Back                        #\n"
+                      "##################################\n";
+        choice = ScreenTheme::choose_them(menu,4,75,40);
+        switch (choice) {
+            case 1:
+                edit_name_of_employee(admin,employee);
+                break;
+            case 2:
+                edit_phone_number_of_employee(admin,employee);
+                break;
+            case 3:
+                reset_password_of_employee(admin,employee);
+                break;
+            default:
+                return;
+
+        }
+    } while (true);
+}
+
 void AdminManger::admin_options(Admin *admin) {
     int choice;
     bool r = true;
@@ -316,7 +475,7 @@ void AdminManger::admin_options(Admin *admin) {
                 add_new_employee(admin);
                 break;
             case 6:
-                list_all_admin(admin);
+                list_all_employee(admin);
                 break;
             case 7:
                 search_for_employee(admin);

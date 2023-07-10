@@ -20,7 +20,7 @@ public:
     void add_client(Client& client);
     Client* search_client(int id);
     void list_client();
-    void edit_client(int id, string first_name, string second_name, string password, string phone_number, double balance);
+    void edit_client(int id, string first_name, string second_name, string password, string phone_number);
     void display_with_national_id();
     void edit_password_in_file();
 };

@@ -11,9 +11,9 @@ protected:
     static void list_all_client(Employee* employee);
     static void search_for_client(Employee* employee);
     static int check_national_id(Person *person);
-    static void edite_client_info(Employee* employee, Client* client);
-    static void edite_name_of_client(Employee* employee, Client* client);
-    static void edite_phone_number_of_client(Employee* employee, Client* client);
+    static void edit_client_info(Employee* employee, Client* client);
+    static void edit_name_of_client(Employee* employee, Client* client);
+    static void edit_phone_number_of_client(Employee* employee, Client* client);
     static void reset_password_of_client(Employee* employee, Client* client);
 public:
     static Employee* login(string id, string password);
