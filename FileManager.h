@@ -14,8 +14,8 @@ private:
 public:
     FileManager();
     void add_client(Client &c);
-    void add_employee(Employee e);
-    void add_admin(Admin a);
+    void add_employee(Employee &e);
+    void add_admin(Admin &a);
     vector<Client> get_all_clients();
     vector<Employee> get_all_employees();
     vector<Admin> get_all_admins();

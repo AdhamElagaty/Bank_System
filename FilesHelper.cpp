@@ -55,9 +55,9 @@ void FilesHelper::saveClient(Client &c) {
     client_out.close();
 }
 
-void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee e) {
+void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee &e) {
     ofstream employee_out;
-    employee_out.open(file_name);
+    employee_out.open(file_name, ios::app);
     int id = generate_id(last_id_file);
     e.set_id(to_string(id));
     if(e.get_password() == ""){

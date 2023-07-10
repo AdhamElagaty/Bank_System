@@ -18,15 +18,15 @@ Employee* Admin::search_employee(int id) {
 
 void Admin::list_employee() {
     vector<Employee> e = f.get_all_employees();
-    cout << "\t\t\t******************************************************" <<endl;
-    cout << "\t\t\t*";
-    cout << "      ID               Name             Salary     ";
+    cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t\t*";
+    cout << "      ID                  Name                Phone Number                  Salary       ";
     cout << "*" << endl;
-    cout << "\t\t\t******************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
     for(Employee &E : e){
-        cout << "\t\t\t*     " << left << setw(15) << E.get_id()    << left << setw(22) << E.get_name() << left << setw(10) << E.get_salary() << setw(6) << "*" << endl;
+        cout << "\t\t\t\t\t\t\t\t\t*     " << left << setw(16) << E.get_id() << left << setw(25) << E.get_name() << left << setw(28) << E.get_phone_number() << left << setw(15) << E.get_salary() << "*" << endl;
     }
-    cout << "\t\t\t******************************************************" <<endl;
+    cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
 }
 
 void Admin::edit_employee(int id, string first_name, string second_name, string password, double Salary) {
@@ -39,5 +39,16 @@ void Admin::edit_employee(int id, string first_name, string second_name, string 
             E.set_salary(salary);
         }
         f.add_employee(E);
+    }
+}
+
+void Admin::edit_password_in_file() {
+    vector<Admin> a = f.get_all_admins();
+    f.remove_all_admins();
+    for(Admin &A : a){
+        if (A.get_id() == this->id){
+            A.set_password(this->password);
+        }
+        f.add_admin(A);
     }
 }

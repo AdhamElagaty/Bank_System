@@ -15,7 +15,7 @@ int ClientManger::print_client_menu() {
     return ScreenTheme::choose_them(menu,6,75,31);
 }
 
-void ClientManger::update_password(Client *client) {
+void ClientManger::update_password(Person *person) {
     string oldPass;
     int attempt = 3;
     do{
@@ -50,7 +50,7 @@ void ClientManger::update_password(Client *client) {
             attempt = 0;
             break;
         }
-        if (oldPass == client->get_password()) {
+        if (oldPass == person->get_password()) {
             break;
         }
         attempt--;
@@ -58,8 +58,8 @@ void ClientManger::update_password(Client *client) {
     if (attempt == 0){
         return;
     }
-    client->set_password(Password::Enter_new_password());
-    client->edit_client_password();
+    person->set_password(Password::Enter_new_password());
+    person->edit_password_in_file();
     ScreenTheme::color_style(2);
     cout << "\t\t\t\t\t\t\t\t\t\t   Password updated successfully :)" << endl;
     ScreenTheme::color_style(7);
@@ -72,7 +72,7 @@ Client *ClientManger::login(string id, string password) {
     if(c != nullptr){
         if(password == c->get_id()){
             c->set_password("0");
-            c->edit_client_password();
+            c->edit_password_in_file();
         }
         if(c->get_password() == password){
             return c;

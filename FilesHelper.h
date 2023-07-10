@@ -16,7 +16,7 @@ private:
     static void save_national_id(string national_id);
 public:
     static void saveClient(Client &c);
-    static void saveEmployee(string file_name, string last_id_file, Employee e);
+    static void saveEmployee(string file_name, string last_id_file, Employee &e);
     static vector<Client> getClients();
     static vector<Employee> getEmployees();
     static vector<Admin> getAdmins();

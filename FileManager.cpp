@@ -26,11 +26,11 @@ void FileManager::add_client(Client &c) {
     FilesHelper::saveClient(c);
 }
 
-void FileManager::add_employee(Employee e) {
+void FileManager::add_employee(Employee &e) {
     FilesHelper::saveEmployee(employee_file,employee_file_last_id,e);
 }
 
-void FileManager::add_admin(Admin a) {
+void FileManager::add_admin(Admin &a) {
     FilesHelper::saveEmployee(admin_file,admin_file_last_id,a);
 }
 

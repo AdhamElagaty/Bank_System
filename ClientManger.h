@@ -10,7 +10,7 @@ protected:
     static void deposit(Client* client);
     static void withdraw(Client* client);
     static void transfer_to(Client *client);
-    static void update_password(Client* client);
+    static void update_password(Person* person);
     static int print_client_menu();
 public:
     static Client* login(string id, string password);

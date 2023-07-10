@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ScreenTheme.h"
+#include "Screens.h"
 #include "Employee.h"
 #include "Validation.h"
 #include <iomanip>
@@ -15,15 +16,39 @@ Person(id,first_name,second_name,password,phone_number,national_id)
     this->set_salary(salary);
 }
 
-void Employee::set_salary(double salary) {
+bool Employee::set_salary(double salary) {
     while (!Validation::isValidSalary(salary)){
         string sal;
-        cout << "Error! Invalid Salary :( " << endl;
-        cout << "Please Enter Salary Again : ";
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "Edite Invalid Salary";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        ScreenTheme::color_style(12);
+        cout << "\t\t\t\t\t\t\t\t\t  Error! Invalid Salary :( " << endl;
+        cout << "\t\t\t\t\t\t\t\t\t  to Add New Employee do you need set Salary more than 5000.";
+        ScreenTheme::color_style(7);
+        cout << "\t\t\t\t\t\t\t\t\t  Please Enter Salary Again : ";
         sal = ScreenTheme::take_num_input(7);
+        if (sal == "!x!"){
+            return false;
+        }
         salary = stod(sal);
     }
     this->salary = salary;
+    return true;
 }
 
 double Employee::get_salary() {
@@ -61,16 +86,6 @@ void Employee::list_client() {
     cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
 }
 
-void Employee::edit_employee_password() {
-    vector<Employee> e = f.get_all_employees();
-    f.remove_all_employees();
-    for(Employee &E : e){
-        if (E.get_id() == this->id){
-            E.set_password(this->password);
-        }
-        f.add_employee(E);
-    }
-}
 
 void Employee::edit_client(int id, string first_name, string second_name, string password,string phone_number, double balance) {
     vector<Client> c = f.get_all_clients();
@@ -94,4 +109,15 @@ void Employee::display_with_national_id() {
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(21) << this->get_phone_number() << left << setw(24) << this->get_national_id() << left << setw(14) << this->get_salary() << "*" << endl;
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
+}
+
+void Employee::edit_password_in_file() {
+    vector<Employee> e = f.get_all_employees();
+    f.remove_all_employees();
+    for(Employee &E : e){
+        if (E.get_id() == this->id){
+            E.set_password(this->password);
+        }
+        f.add_employee(E);
+    }
 }

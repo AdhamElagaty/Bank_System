@@ -19,9 +19,9 @@ public:
     bool withdraw(double amount);
     bool transferTo(double amount, Client& recipient);
     void checkBalance();
-    void edit_client_password();
     void edit_client_balance();
     void display();
     void display_with_national_id();
+    void edit_password_in_file();
 };
 #endif

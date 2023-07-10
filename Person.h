@@ -25,5 +25,6 @@ public:
     string get_national_id();
     virtual void display() = 0;
     virtual void display_with_national_id() = 0;
+    virtual void edit_password_in_file() = 0;
 };
 #endif

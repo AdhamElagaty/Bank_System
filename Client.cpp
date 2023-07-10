@@ -33,6 +33,13 @@ bool Client::set_balance(double balance) {
         cout << " #$#$#$" << endl;
         ScreenTheme::color_style(7);
         cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+        ScreenTheme::color_style(12);
+        cout << "ESC";
+        ScreenTheme::color_style(7);
+        cout << "'" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
         ScreenTheme::color_style(12);
         cout << "\t\t\t\t\t\t\t\t\t  Error! Invalid Balance :( " << endl;
         cout << "\t\t\t\t\t\t\t\t\t  to Open Account do you need deposit more than 1500." << endl;
@@ -89,16 +96,6 @@ void Client::checkBalance(){
     cout << "\t\t\t\t\t\t\t\t\t   *************************************" << endl;
 }
 
-void Client::edit_client_password() {
-    vector<Client> c = f.get_all_clients();
-    f.remove_all_clients();
-    for(Client &C : c){
-        if (C.get_id() == this->id){
-            C.set_password(this->password);
-        }
-        f.add_client(C);
-    }
-}
 
 void Client::edit_client_balance() {
     vector<Client> c = f.get_all_clients();
@@ -129,5 +126,16 @@ void Client::display_with_national_id() {
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(21) << this->get_phone_number() << left << setw(24) << this->get_national_id() << left << setw(14) << this->get_balance() << "*" << endl;
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
+}
+
+void Client::edit_password_in_file() {
+    vector<Client> c = f.get_all_clients();
+    f.remove_all_clients();
+    for(Client &C : c){
+        if (C.get_id() == this->id){
+            C.set_password(this->password);
+        }
+        f.add_client(C);
+    }
 }
 
