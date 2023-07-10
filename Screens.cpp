@@ -15,7 +15,7 @@ void Screens::view_date_and_time() {
 }
 
 void Screens::loading_screen() {
-    Sleep(40);
+    Sleep(50);
     system("cls");
     ScreenTheme::color_style(14);
     cout << "\n\n";
