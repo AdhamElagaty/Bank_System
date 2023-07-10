@@ -532,3 +532,10 @@ void Screens::login_options() {
         login_screen(choice);
     } while (choice != 4);
 }
+
+void Screens::run() {
+    system("cls");
+    loading_screen();
+    welcome();
+    login_options();
+}

@@ -14,5 +14,6 @@ public:
     static int login_as_menu();
     static void login_screen(int num);
     static void login_options();
+    static void run();
 };
 #endif
