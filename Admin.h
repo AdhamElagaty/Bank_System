@@ -11,7 +11,7 @@ public:
     void add_employee(Employee& employee);
     Employee* search_employee(int id);
     void list_employee();
-    void edit_employee(int id, string first_name, string second_name, string password, double Salary);
+    void edit_employee(int id, string first_name, string second_name, string password, string phone_number, double salary);
     void edit_password_in_file();
 };
 #endif

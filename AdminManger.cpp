@@ -239,13 +239,14 @@ void AdminManger::search_for_employee(Admin *admin) {
                 e->display();
                 int r;
                 string menu = "\n#####################################\n"
-                              "# 1. Edit Salary                    #\n"
+                              "# 1. Set New Salary                 #\n"
                               "# 2. Edit Employee Information      #\n"
                               "# 3. Back                           #\n"
                               "#####################################\n";
                 choice = ScreenTheme::choose_them(menu,3,75,40);
                 switch (choice) {
                     case 1: {
+                        edit_salary(admin,e);
                         break;
                     }
                     case 2: {
@@ -260,6 +261,35 @@ void AdminManger::search_for_employee(Admin *admin) {
             continue;
         }
     } while (true);
+}
+
+void AdminManger::edit_salary(Admin *admin, Employee *employee) {
+    string salary;
+    system("cls");
+    Screens::header_screen();
+    ScreenTheme::color_style(11);
+    cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+    ScreenTheme::color_style(7);
+    cout << "Edit Salary for Employee";
+    ScreenTheme::color_style(11);
+    cout << " #$#$#$" << endl;
+    ScreenTheme::color_style(7);
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t\t   To Cancel Press '";
+    ScreenTheme::color_style(12);
+    cout << "ESC";
+    ScreenTheme::color_style(7);
+    cout << "'" << endl;
+    cout << "\n\n";
+    cout << "\t\t\t\t\t\t\t\t\t  to Edit Salary do you need set Salary more than 5000 : ";
+    salary = ScreenTheme::take_num_input(10);
+    if (salary == "!x!"){
+        return;
+    }
+    if(!employee->set_salary(stod(salary))){
+        return;
+    }
+    admin->edit_employee(stoi(employee->get_id()),employee->get_first_name(),employee->get_second_name(),employee->get_password(),employee->get_phone_number(),employee->get_salary());
 }
 
 void AdminManger::admin_options(Admin *admin) {

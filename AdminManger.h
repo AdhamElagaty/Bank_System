@@ -11,6 +11,7 @@ private:
     static void add_new_employee(Admin* admin);
     static void list_all_admin(Admin *admin);
     static void search_for_employee(Admin *admin);
+    static void edit_salary(Admin *admin, Employee *employee);
 public:
     static Admin* login(string id, string password);
     static void admin_options(Admin* admin);

@@ -38,7 +38,7 @@ bool Employee::set_salary(double salary) {
         cout << "\n\n";
         ScreenTheme::color_style(12);
         cout << "\t\t\t\t\t\t\t\t\t  Error! Invalid Salary :( " << endl;
-        cout << "\t\t\t\t\t\t\t\t\t  to Add New Employee do you need set Salary more than 5000.";
+        cout << "\t\t\t\t\t\t\t\t\t  Do you need to set Salary more than 5000." << endl;
         ScreenTheme::color_style(7);
         cout << "\t\t\t\t\t\t\t\t\t  Please Enter Salary Again : ";
         sal = ScreenTheme::take_num_input(7);
@@ -58,7 +58,7 @@ double Employee::get_salary() {
 void Employee::display() {
     cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t*";
-    cout << "      ID                  Name                Phone Number                   Salary      ";
+    cout << "      ID                  Name                Phone Number               Salary          ";
     cout << "*" << endl;
     cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t*     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(28) << this->get_phone_number() << left << setw(15) << this->get_salary() << "*" << endl;

@@ -29,13 +29,14 @@ void Admin::list_employee() {
     cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
 }
 
-void Admin::edit_employee(int id, string first_name, string second_name, string password, double Salary) {
+void Admin::edit_employee(int id, string first_name, string second_name, string password, string phone_number, double salary) {
     vector<Employee> e = f.get_all_employees();
     f.remove_all_employees();
     for(Employee &E : e){
         if (E.get_id() == to_string(id)){
             E.set_name(first_name + " " + second_name);
             E.set_password(password);
+            E.set_phone_number(phone_number);
             E.set_salary(salary);
         }
         f.add_employee(E);
