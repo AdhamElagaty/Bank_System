@@ -1,3 +1,4 @@
+#include "ScreenTheme.h"
 #include <iostream>
 #include <iomanip>
 #include "Admin.h"
@@ -20,7 +21,9 @@ void Admin::list_employee() {
     vector<Employee> e = f.get_all_employees();
     cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t\t\t\t*";
+    ScreenTheme::color_style(90);
     cout << "      ID                  Name                Phone Number                  Salary       ";
+    ScreenTheme::color_style(7);
     cout << "*" << endl;
     cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
     for(Employee &E : e){

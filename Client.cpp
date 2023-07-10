@@ -90,9 +90,21 @@ bool Client::transferTo(double amount, Client &recipient) {
 
 void Client::checkBalance(){
     cout << "\t\t\t\t\t\t\t\t\t   *************************************" << endl;
-    cout << "\t\t\t\t\t\t\t\t\t   *              *                    *" << endl;
-    cout << "\t\t\t\t\t\t\t\t\t   * Your Balance *    " << left << setw(15) << this->balance << " *" << endl;
-    cout << "\t\t\t\t\t\t\t\t\t   *              *                    *" << endl;
+    cout << "\t\t\t\t\t\t\t\t\t   *";
+    ScreenTheme::color_style(90);
+    cout << "              ";
+    ScreenTheme::color_style(7);
+    cout << "*                    *" << endl;
+    cout << "\t\t\t\t\t\t\t\t\t   *";
+    ScreenTheme::color_style(90);
+    cout << " Your Balance ";
+    ScreenTheme::color_style(7);
+    cout << "*    " << left << setw(15) << this->balance << " *" << endl;
+    cout << "\t\t\t\t\t\t\t\t\t   *";
+    ScreenTheme::color_style(90);
+    cout << "              ";
+    ScreenTheme::color_style(7);
+    cout << "*                    *" << endl;
     cout << "\t\t\t\t\t\t\t\t\t   *************************************" << endl;
 }
 
@@ -111,7 +123,9 @@ void Client::edit_client_balance() {
 void Client::display(){
     cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t*";
+    ScreenTheme::color_style(90);
     cout << "      ID                  Name                Phone Number                  Balance      ";
+    ScreenTheme::color_style(7);
     cout << "*" << endl;
     cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t*     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(28) << this->get_phone_number() << left << setw(15) << this->get_balance() << "*" << endl;
@@ -121,7 +135,9 @@ void Client::display(){
 void Client::display_with_national_id() {
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *";
+    ScreenTheme::color_style(90);
     cout << "      ID                  Name                Phone Number          National ID             Balance      ";
+    ScreenTheme::color_style(7);
     cout << "*" << endl;
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(21) << this->get_phone_number() << left << setw(24) << this->get_national_id() << left << setw(14) << this->get_balance() << "*" << endl;

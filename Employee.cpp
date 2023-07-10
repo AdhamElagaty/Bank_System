@@ -58,7 +58,9 @@ double Employee::get_salary() {
 void Employee::display() {
     cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t*";
+    ScreenTheme::color_style(90);
     cout << "      ID                  Name                Phone Number               Salary          ";
+    ScreenTheme::color_style(7);
     cout << "*" << endl;
     cout << "\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t*     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(28) << this->get_phone_number() << left << setw(15) << this->get_salary() << "*" << endl;
@@ -77,7 +79,9 @@ void Employee::list_client() {
     vector<Client> c = f.get_all_clients();
     cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
     cout << "\t\t\t\t\t\t\t\t\t*";
+    ScreenTheme::color_style(90);
     cout << "      ID                  Name                Phone Number                  Balance      ";
+    ScreenTheme::color_style(7);
     cout << "*" << endl;
     cout << "\t\t\t\t\t\t\t\t\t*******************************************************************************************" <<endl;
     for(Client &C : c){
@@ -103,7 +107,9 @@ void Employee::edit_client(int id, string first_name, string second_name, string
 void Employee::display_with_national_id() {
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *";
+    ScreenTheme::color_style(90);
     cout << "      ID                  Name                Phone Number          National ID           Salary         ";
+    ScreenTheme::color_style(7);
     cout << "*" << endl;
     cout << "\t\t\t\t\t     ***********************************************************************************************************" <<endl;
     cout << "\t\t\t\t\t     *     " << left << setw(16) << this->get_id() << left << setw(25) << this->get_name() << left << setw(21) << this->get_phone_number() << left << setw(24) << this->get_national_id() << left << setw(14) << this->get_salary() << "*" << endl;
