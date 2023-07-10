@@ -171,7 +171,6 @@ void EmployeeManger::add_new_client(Employee* employee) {
 
 void EmployeeManger::list_all_client(Employee *employee) {
     int choice;
-    bool r = true;
     do {
         system("cls");
         Screens::header_screen();
@@ -198,10 +197,9 @@ void EmployeeManger::list_all_client(Employee *employee) {
                 search_for_client(employee);
                 break;
             default:
-                r = false;
-                break;
+                return;
         }
-    } while (r);
+    } while (true);
 }
 
 void EmployeeManger::search_for_client(Employee *employee) {

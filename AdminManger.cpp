@@ -157,6 +157,38 @@ void AdminManger::add_new_employee(Admin *admin) {
     display_employee_info(e);
 }
 
+void AdminManger::list_all_admin(Admin *admin) {
+    int choice;
+    do {
+        system("cls");
+        Screens::header_screen();
+        ScreenTheme::color_style(11);
+        cout << "\n\t\t\t\t\t\t\t\t\t       $#$#$# ";
+        ScreenTheme::color_style(7);
+        cout << "All Employees";
+        ScreenTheme::color_style(11);
+        cout << " #$#$#$" << endl;
+        ScreenTheme::color_style(7);
+        cout << "\n\n";
+        admin->list_employee();
+        string menu = "\n################################\n"
+                      "# 1. Add New Employee          #\n"
+                      "# 2. Search for Employee       #\n"
+                      "# 3. Back                      #\n"
+                      "################################\n";
+        choice = ScreenTheme::choose_them(menu,3,27,35);
+        switch (choice) {
+            case 1:
+                add_new_employee(admin);
+                break;
+            case 2:
+                break;
+            default:
+                return;
+        }
+    } while (true);
+}
+
 void AdminManger::admin_options(Admin *admin) {
     int choice;
     bool r = true;
@@ -181,6 +213,7 @@ void AdminManger::admin_options(Admin *admin) {
                 add_new_employee(admin);
                 break;
             case 6:
+                list_all_admin(admin);
                 break;
             case 7:
                 break;
