@@ -7,6 +7,7 @@
 using namespace std;
 
 string Password::takePasswdFromUser(){
+    ScreenTheme::color_style(6);
     char sp = '*';
     string passwd = "";
     char ch_ipt;
@@ -14,10 +15,12 @@ string Password::takePasswdFromUser(){
         ch_ipt = _getch();
         if (ch_ipt == 13) {
             cout << endl;
+            ScreenTheme::color_style(7);
             return passwd;
         }else if(ch_ipt == 27){
             cout << endl;
             passwd = "!x!";
+            ScreenTheme::color_style(7);
             return passwd;
         }
         else if (ch_ipt == 8 && passwd.length() != 0) {
