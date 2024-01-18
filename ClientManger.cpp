@@ -70,7 +70,7 @@ Client *ClientManger::login(string id, string password) {
     Client* c;
     c = f.search_client(stoi(id));
     if(c != nullptr){
-        if(password == c->get_id()){
+        if(password == c->get_id() && c->get_password() == c->get_id()+"00000000"){
             c->set_password("0");
             c->edit_password_in_file();
         }

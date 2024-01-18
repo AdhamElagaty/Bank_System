@@ -30,7 +30,6 @@ int FilesHelper::generate_id(std::string last_id_file) {
     } else{
         id = getLast(last_id_file) + 1;
     }
-    saveLast(last_id_file,id);
     return id;
 }
 
@@ -47,13 +46,14 @@ void FilesHelper::saveClient(Client &c, bool generateID) {
     if(generateID){
         int id = generate_id("Last_id_Clients.txt");
         c.set_id(to_string(id));
+        save_national_id(c.get_national_id());
     }
     if(c.get_password() == ""){
         c.set_password(c.get_id()+"00000000");
     }
-    save_national_id(c.get_national_id());
     string password = Password::encrypt_password(c.get_password(),c.get_id());
     client_out << c.get_id() << "," << c.get_name() << "," << password << "," << c.get_phone_number() << "," << c.get_national_id() << "," << c.get_balance() << endl;
+    saveLast("Last_id_Clients.txt", stoi(c.get_id()));
     client_out.close();
 }
 
@@ -63,6 +63,7 @@ void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee &
     if(generateID) {
         int id = generate_id(last_id_file);
         e.set_id(to_string(id));
+        save_national_id(e.get_national_id());
     }
     if(e.get_password() == ""){
         e.set_password(e.get_id()+"00000000");
@@ -70,6 +71,7 @@ void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee &
     save_national_id(e.get_national_id());
     string password = Password::encrypt_password(e.get_password(),e.get_id());
     employee_out << e.get_id() << "," << e.get_name() << "," << password << "," << e.get_phone_number() << "," << e.get_national_id() << "," << e.get_salary() << endl;
+    saveLast(last_id_file, stoi(e.get_id()));
     employee_out.close();
 }
 

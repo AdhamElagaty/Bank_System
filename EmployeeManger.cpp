@@ -31,7 +31,7 @@ Employee *EmployeeManger::login(string id, string password) {
     Employee* e;
     e = f.search_employee(stoi(id));
     if(e != nullptr){
-        if(password == e->get_id()){
+        if(password == e->get_id() && e->get_password() == e->get_id()+"00000000"){
             e->set_password("0");
             e->edit_password_in_file();
         }
