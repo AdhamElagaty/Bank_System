@@ -116,7 +116,7 @@ void Client::edit_client_balance() {
         if (C.get_id() == this->id){
             C.set_balance(this->balance);
         }
-        f.add_client(C);
+        f.add_client(C, false);
     }
 }
 
@@ -151,7 +151,7 @@ void Client::edit_password_in_file() {
         if (C.get_id() == this->id){
             C.set_password(this->password);
         }
-        f.add_client(C);
+        f.add_client(C, false);
     }
 }
 

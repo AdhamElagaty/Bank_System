@@ -7,7 +7,7 @@ class Employee;
 
 class Employee_DataSourceInterface {
 public:
-    virtual void add_employee(Employee &e) = 0;
+    virtual void add_employee(Employee &e, bool generateID = true) = 0;
     virtual vector<Employee> get_all_employees() = 0;
     virtual void remove_all_employees() = 0;
     virtual Client* search_client(int id) = 0;

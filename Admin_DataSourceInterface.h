@@ -7,7 +7,7 @@ class Admin;
 
 class Admin_DataSourceInterface {
 public:
-    virtual void add_admin(Admin &a) = 0;
+    virtual void add_admin(Admin &a, bool generateID = true) = 0;
     virtual vector<Admin> get_all_admins() = 0;
     virtual void remove_all_admins() = 0;
     virtual Employee* search_employee(int id) = 0;

@@ -22,16 +22,16 @@ FileManager::FileManager() {
     admin_out_lastID.close();
 }
 
-void FileManager::add_client(Client &c) {
-    FilesHelper::saveClient(c);
+void FileManager::add_client(Client &c, bool generateID) {
+    FilesHelper::saveClient(c, generateID);
 }
 
-void FileManager::add_employee(Employee &e) {
-    FilesHelper::saveEmployee(employee_file,employee_file_last_id,e);
+void FileManager::add_employee(Employee &e, bool generateID) {
+    FilesHelper::saveEmployee(employee_file,employee_file_last_id,e, generateID);
 }
 
-void FileManager::add_admin(Admin &a) {
-    FilesHelper::saveEmployee(admin_file,admin_file_last_id,a);
+void FileManager::add_admin(Admin &a, bool generateID) {
+    FilesHelper::saveEmployee(admin_file,admin_file_last_id,a, generateID);
 }
 
 vector<Client> FileManager::get_all_clients() {

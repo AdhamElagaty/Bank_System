@@ -214,7 +214,7 @@ void AdminManger::search_for_employee(Admin *admin) {
         if (r){
             ScreenTheme::color_style(12);
             cout << "\t\t\t\t\t\t\t\t\t   Error! Invalid ID;" << endl;
-            cout << "\t\t\t\t\t\t\t\t\t   ---> No Client with this ID :(" << endl;
+            cout << "\t\t\t\t\t\t\t\t\t   ---> No Employee with this ID :(" << endl;
             ScreenTheme::color_style(7);
         }
         cout << "\t\t\t\t\t\t\t\t\t   Enter ID to Search : ";

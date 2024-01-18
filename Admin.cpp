@@ -42,7 +42,7 @@ void Admin::edit_employee(int id, string first_name, string second_name, string 
             E.set_phone_number(phone_number);
             E.set_salary(salary);
         }
-        f.add_employee(E);
+        f.add_employee(E, false);
     }
 }
 
@@ -53,6 +53,6 @@ void Admin::edit_password_in_file() {
         if (A.get_id() == this->id){
             A.set_password(this->password);
         }
-        f.add_admin(A);
+        f.add_admin(A, false);
     }
 }

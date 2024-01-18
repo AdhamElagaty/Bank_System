@@ -13,9 +13,9 @@ private:
     string client_file, employee_file, admin_file, client_file_last_id, employee_file_last_id, admin_file_last_id;
 public:
     FileManager();
-    void add_client(Client &c);
-    void add_employee(Employee &e);
-    void add_admin(Admin &a);
+    void add_client(Client &c, bool generateID = true);
+    void add_employee(Employee &e, bool generateID = true);
+    void add_admin(Admin &a, bool generateID = true);
     vector<Client> get_all_clients();
     vector<Employee> get_all_employees();
     vector<Admin> get_all_admins();

@@ -41,11 +41,13 @@ void FilesHelper::save_national_id(string national_id){
     LNationalID_out.close();
 }
 
-void FilesHelper::saveClient(Client &c) {
+void FilesHelper::saveClient(Client &c, bool generateID) {
     ofstream client_out;
     client_out.open("Clients.txt", ios::app);
-    int id = generate_id("Last_id_Clients.txt");
-    c.set_id(to_string(id));
+    if(generateID){
+        int id = generate_id("Last_id_Clients.txt");
+        c.set_id(to_string(id));
+    }
     if(c.get_password() == ""){
         c.set_password(c.get_id()+"00000000");
     }
@@ -55,11 +57,13 @@ void FilesHelper::saveClient(Client &c) {
     client_out.close();
 }
 
-void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee &e) {
+void FilesHelper::saveEmployee(string file_name, string last_id_file, Employee &e, bool generateID) {
     ofstream employee_out;
     employee_out.open(file_name, ios::app);
-    int id = generate_id(last_id_file);
-    e.set_id(to_string(id));
+    if(generateID) {
+        int id = generate_id(last_id_file);
+        e.set_id(to_string(id));
+    }
     if(e.get_password() == ""){
         e.set_password(e.get_id()+"00000000");
     }

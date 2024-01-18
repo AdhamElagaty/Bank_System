@@ -100,7 +100,7 @@ void Employee::edit_client(int id, string first_name, string second_name, string
             C.set_password(password);
             C.set_phone_number(phone_number);
         }
-        f.add_client(C);
+        f.add_client(C, false);
     }
 }
 
@@ -123,6 +123,6 @@ void Employee::edit_password_in_file() {
         if (E.get_id() == this->id){
             E.set_password(this->password);
         }
-        f.add_employee(E);
+        f.add_employee(E, false);
     }
 }
